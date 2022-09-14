@@ -119,6 +119,7 @@
     <ClInclude Include="CInputMgr.h">
       <Filter>src\Hyun\05. Managers\01. CInputMgr</Filter>
     </ClInclude>
+    <ClInclude Include="asdassda.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -153,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="CInputMgr.cpp">
       <Filter>src\Hyun\05. Managers\01. CInputMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="asdassda.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
