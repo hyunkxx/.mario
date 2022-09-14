@@ -1,0 +1,13 @@
+
+*.ipch
+*.db
+mario/.vs/mario/v16/.suo
+*.obj
+*.recipe
+*.log
+*.tlog
+*.pdb
+*.ilk
+*.idb
+*.res
+*.exe

@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src\Hyun">
+      <UniqueIdentifier>{6edc6668-2111-49ad-b39f-c58121662ec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\00. Main">
+      <UniqueIdentifier>{8db2d936-ccc2-40f2-9919-c22034748dce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\01. Utility">
+      <UniqueIdentifier>{01eac503-b315-45bc-8806-e73c96f4298c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\01. Utility\00. etc">
+      <UniqueIdentifier>{23703d5e-8fba-415f-89aa-b5d2670aab26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\01. Utility\01. pch">
+      <UniqueIdentifier>{4fc83b8e-bf02-458f-b57d-a74c9c6777eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\02. Core">
+      <UniqueIdentifier>{6fa757ff-9947-48ec-92cd-3baea16f0dfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\03. CObject">
+      <UniqueIdentifier>{152179b4-1d50-4602-988b-731dd4c4cf5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene">
+      <UniqueIdentifier>{8d2f5b99-dfe0-4555-b1bd-27e3762dbbb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\00. CSceneBase">
+      <UniqueIdentifier>{27af5f85-612b-4edc-aa30-3fe2490e1c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\01. CStartScene">
+      <UniqueIdentifier>{0b3f806a-b51b-4167-83be-067f4797c2ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\03. CStageTwo">
+      <UniqueIdentifier>{f84623f8-bbdb-4440-b1cc-509524404541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\02. CStageOne">
+      <UniqueIdentifier>{7a86c6a3-3573-46c3-ae0d-21ba1965a357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\04. CStageThree">
+      <UniqueIdentifier>{58e15a1c-be98-4ef9-9d1b-c097c4258170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\05. CStageFour">
+      <UniqueIdentifier>{ad32ba1f-1094-452c-99a2-b13e26f253a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\06. CEndScene">
+      <UniqueIdentifier>{986243a5-76b2-4ffc-953b-915fc69b975d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\05. Managers">
+      <UniqueIdentifier>{f64eee44-8167-4f58-aec9-929362bc0c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\05. Managers\00. CSceneMgr">
+      <UniqueIdentifier>{997c663f-d95d-4637-9350-e2775a3700d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\05. Managers\02. CCollisionMgr">
+      <UniqueIdentifier>{a58116cc-0206-44f0-9ffe-f81a5553046a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\05. Managers\01. CInputMgr">
+      <UniqueIdentifier>{a41187e2-a33e-446c-95d9-2cfea27b881b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\05. Managers\03. LineManager">
+      <UniqueIdentifier>{e7683280-f262-4f8d-b4ac-788407288879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\06. Line">
+      <UniqueIdentifier>{eb8fb263-95dc-4110-9927-e5373711876a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>src\Hyun\01. Utility\00. etc</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>src\Hyun\01. Utility\00. etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>src\Hyun\01. Utility\00. etc</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>src\Hyun\01. Utility\01. pch</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>src\Hyun\01. Utility\01. pch</Filter>
+    </ClInclude>
+    <ClInclude Include="mario.h">
+      <Filter>src\Hyun\00. Main</Filter>
+    </ClInclude>
+    <ClInclude Include="CCore.h">
+      <Filter>src\Hyun\02. Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CObject.h">
+      <Filter>src\Hyun\03. CObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene.h">
+      <Filter>src\Hyun\04. Scene\00. CSceneBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CStartScene.h">
+      <Filter>src\Hyun\04. Scene\01. CStartScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageOne.h">
+      <Filter>src\Hyun\04. Scene\02. CStageOne</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneMgr.h">
+      <Filter>src\Hyun\05. Managers\00. CSceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CLine.h">
+      <Filter>src\Hyun\06. Line</Filter>
+    </ClInclude>
+    <ClInclude Include="CLineMgr.h">
+      <Filter>src\Hyun\05. Managers\03. LineManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CInputMgr.h">
+      <Filter>src\Hyun\05. Managers\01. CInputMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>src\Hyun\01. Utility\01. pch</Filter>
+    </ClCompile>
+    <ClCompile Include="mario.cpp">
+      <Filter>src\Hyun\00. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="CCore.cpp">
+      <Filter>src\Hyun\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="CObject.cpp">
+      <Filter>src\Hyun\03. CObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneMgr.cpp">
+      <Filter>src\Hyun\05. Managers\00. CSceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene.cpp">
+      <Filter>src\Hyun\04. Scene\00. CSceneBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CStartScene.cpp">
+      <Filter>src\Hyun\04. Scene\01. CStartScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageOne.cpp">
+      <Filter>src\Hyun\04. Scene\02. CStageOne</Filter>
+    </ClCompile>
+    <ClCompile Include="CLine.cpp">
+      <Filter>src\Hyun\06. Line</Filter>
+    </ClCompile>
+    <ClCompile Include="CLineMgr.cpp">
+      <Filter>src\Hyun\05. Managers\03. LineManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CInputMgr.cpp">
+      <Filter>src\Hyun\05. Managers\01. CInputMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="mario.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>res</Filter>
+    </Image>
+    <Image Include="mario.ico">
+      <Filter>res</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
