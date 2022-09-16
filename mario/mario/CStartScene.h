@@ -24,8 +24,10 @@ public:
 	CStartScene& operator=(const CStartScene& rhs) = delete;
 public:
 	void Enter() override;
+	void Exit() override;
 	void Update(float _fDeltaTime) override;
 	void Render(HDC _hDC) override;
 private:
+	HDC m_hSubDC;
 };
 

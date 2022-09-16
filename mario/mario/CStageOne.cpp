@@ -3,9 +3,20 @@
 
 #include "CObject.h"
 #include "CScene.h"
+#include "CPlayer.h"
+
+#include "CCore.h"
+#include "CollisionMgr.h"
+#include "CSceneMgr.h"
+#include "CLineMgr.h"
+#include "CInputMgr.h"
+#include "CBitmapMgr.h"
+#include "CScrollMgr.h"
+#include "CMapEditor.h"
 
 CStageOne::CStageOne(wstring _szName)
 	: CScene(_szName)
+	, m_hSubDC(0)
 {
 }
 
@@ -15,21 +26,27 @@ CStageOne::~CStageOne()
 
 void CStageOne::Enter()
 {
-	//해당씬에 들어갈 오브젝트들 AddObject
+	size_t i = CSceneMgr::GetInstance()->GetCurIndex();
 
-	//플레이어를 공유할지말지 고민중 > 지금은 씬이동시 플레이어 데이터를
-	// 리스트에서 삭제만 하지않고 다른 씬과 공유되지는 않음.
-	if(nPlayerCount < 1)
-		AddObject(new CObject(400.f, 400.f, 30.f), OBJ_TYPE::PLAYER);
+	AddObject(new CPlayer(100.f, 500.f, 30.f), OBJ_TYPE::PLAYER);
+	//CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/menu_1.bmp", L"menu");
+	//CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/main_1.bmp", L"main");
 
-	AddObject(new CObject(100.f, 100.f, 20.f), OBJ_TYPE::ENEMY);
-	AddObject(new CObject(200.f, 200.f, 20.f), OBJ_TYPE::ENEMY);
-	AddObject(new CObject(200.f, 300.f, 20.f), OBJ_TYPE::ENEMY);
-	AddObject(new CObject(200.f, 400.f, 20.f), OBJ_TYPE::ENEMY);
+	m_vCopyLines = CMapEditor::GetInst()->GetLineList();
+	m_vCopyRects = CMapEditor::GetInst()->GetRectList();
+}
+
+void CStageOne::Exit()
+{
+	ClearObject();
+	m_vCopyLines->clear();
+	m_vCopyRects->clear();
 }
 
 void CStageOne::Update(float _fDeltaTime)
 {
+	//CMapEditor::GetInst()->Update();
+
 	/* Update */
 	for (int i = 0; i < (UINT)OBJ_TYPE::END; i++)
 	{
@@ -49,19 +66,38 @@ void CStageOne::Update(float _fDeltaTime)
 			}
 		}
 	}
-
 	/* LateUpdate */
 	for (int i = 0; i < (UINT)OBJ_TYPE::END; i++)
 	{
 		for (auto iter = m_arrObject[i].begin(); iter != m_arrObject[i].end(); ++iter)
 		{
 			(*iter)->LateUpdate(_fDeltaTime);
+			
 		}
 	}
+	list<CObject*> playerList = *(CSceneMgr::GetInstance()->GetCurScene()->GetObjectList(OBJ_TYPE::PLAYER));
+	CCollisionMgr::CollisionLine(playerList, *(CLineMgr::GetInstance()->GetLines(SCENE_STATE::STAGE_1)));
 }
 
 void CStageOne::Render(HDC _hdc)
-{
+{	
+	SetBkMode(_hdc, TRANSPARENT);
+	
+	const MapSize* const mapSize = CMapEditor::GetInst()->GetMapSize();
+
+	m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(L"main1");
+
+	BitBlt(_hdc
+		,(int)CScrollMgr::GetInst()->GetScrollX()
+		,(int)CScrollMgr::GetInst()->GetScrollY(),
+		mapSize[0].m_iWidth,
+		mapSize[0].m_iHeight,
+		m_hSubDC, 0, 0, SRCCOPY);
+
+	//m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(L"main1");
+	////m_hSubDC = CMapEditor::GetInst()->GetMap(MAP::MAIN);
+	//BitBlt(_hdc, (int)x, (int)y, 1920, 681, m_hSubDC, 0, 0, SRCCOPY);
+
 	for (int i = 0; i < (UINT)OBJ_TYPE::END; i++)
 	{
 		for (auto iter = m_arrObject[i].begin(); iter != m_arrObject[i].end(); ++iter)
@@ -69,5 +105,6 @@ void CStageOne::Render(HDC _hdc)
 			(*iter)->Render(_hdc);
 		}
 	}
+
 	TextOut(_hdc, 10, 10, m_szName.c_str(), lstrlen(m_szName.c_str()));
 }

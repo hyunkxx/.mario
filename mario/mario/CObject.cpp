@@ -34,7 +34,6 @@ CObject::~CObject()
 
 void CObject::Initalize()
 {
-
 }
 
 int CObject::Update(float _fDeltaTime)
@@ -42,8 +41,7 @@ int CObject::Update(float _fDeltaTime)
 	//상속받은쪽에서 CObject::Update()를 Update문의 맨처음 실행 해줘야함
 	setRect();
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
-		m_tTransform.fY -= 100.f * _fDeltaTime;
+	
 
 	return EVENT_SUCCEED;
 }
@@ -56,7 +54,11 @@ void CObject::LateUpdate(float _fDeltaTime)
 void CObject::Render(HDC _hdc)
 {
 	//테스트용 코드 실제 렌더링은 상속받은 쪽에서 구현
-	Rectangle(_hdc, m_rcRect.left, m_rcRect.top, m_rcRect.right, m_rcRect.bottom);
+	Rectangle(_hdc
+		, m_rcRect.left 
+		, m_rcRect.top 
+		, m_rcRect.right 
+		, m_rcRect.bottom );
 }
 
 void CObject::Release()

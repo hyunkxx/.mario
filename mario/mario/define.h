@@ -12,6 +12,11 @@
 #define EVENT_SUCCEED		 0
 #define EVENT_FAILED		-1
 
+#define DeltaTime			CCore::fDeltaTime
+
+#define SAFE_DELETE(T)		if(T){delete T; T  = nullptr;}
+#define SAFE_DELETE_ARR(T)  if(T){delete[] T; T  = nullptr;}
+
 enum class OBJ_TYPE
 {
 	DEFAULT,      //초기값
@@ -40,6 +45,7 @@ enum class SCENE_STATE
 	STAGE_3,		// 스테이지 3
 	STAGE_4,		// 스테이지 4
 	STAGE_END,		// 게임종료 씬
+	STAGE_EDIT,	    // 에디터 씬
 	STAGE_COUNT
 };
 
@@ -49,4 +55,11 @@ enum class KEY_STATE
 	PRESSED, //눌려있음
 	DOWN,    //키 다운
 	UP       //키 업 
+};
+
+enum class MAP
+{
+	MENU,
+	MAIN,
+	END
 };

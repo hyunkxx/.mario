@@ -20,5 +20,3 @@ public:
 public:
 	KeyState m_tKeyState[VK_MAX];
 };
-
-

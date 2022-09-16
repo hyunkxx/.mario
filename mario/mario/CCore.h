@@ -8,8 +8,7 @@ private:
 	CCore& operator=(const CCore& rhs) = delete;
 	CCore(const CCore& rhs) = delete;
 public:
-	static CCore* pInstance;
-	static CCore* GetInstance() { if (!pInstance) { pInstance = new CCore; } return pInstance; }
+	static CCore* pInstance;	static CCore* GetInstance() { if (!pInstance) { pInstance = new CCore; } return pInstance; }
 	static void Destroy();
 	static float fDeltaTime;
 public:

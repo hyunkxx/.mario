@@ -8,7 +8,7 @@ public:
 	CLine();
 	CLine(MYPOINT& _lPoint, MYPOINT& _rPoint);
 	CLine(LINE& _line);
-	~CLine();
+	virtual ~CLine();
 public:
 	const LINE& GetLine() const { return m_tLine; }
 public:

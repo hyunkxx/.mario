@@ -5,6 +5,8 @@
 #include "CScene.h"
 #include "CStartScene.h"
 #include "CStageOne.h"
+#include "CStageEdit.h"
+
 
 CSceneMgr* CSceneMgr::pInstance;
 
@@ -18,6 +20,7 @@ CSceneMgr::CSceneMgr()
 	m_arrScene[(UINT)SCENE_STATE::STAGE_3]     = new CStageOne(L"Stage 3");
 	m_arrScene[(UINT)SCENE_STATE::STAGE_4]     = new CStartScene(L"Stage 4");
 	m_arrScene[(UINT)SCENE_STATE::STAGE_END]   = new CStartScene(L"End Stage");
+	m_arrScene[(UINT)SCENE_STATE::STAGE_EDIT]  = new CStageEdit(L"Edit Stage");
 
 	//±‚∫ª æ¿¿∫ Ω∫≈∏∆Æ æ¿
 	m_pCurScene = m_arrScene[(UINT)SCENE_STATE::STAGE_START];
@@ -52,6 +55,7 @@ void CSceneMgr::NextScene()
 	if (m_nCurIndex < (UINT)SCENE_STATE::STAGE_COUNT - 1)
 		m_nCurIndex++;
 	
+	m_pCurScene->Exit();
 	m_pCurScene->Exit();
 	m_pCurScene = m_arrScene[m_nCurIndex];
 	m_pCurScene->Enter();

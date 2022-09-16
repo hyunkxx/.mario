@@ -1,12 +1,14 @@
 #include "pch.h"
 #include "CStartScene.h"
 
-#include "CSceneMgr.h"
-#include "CLineMgr.h"
 #include "CObject.h"
+#include "CSceneMgr.h"
+#include "CBitmapMgr.h"
+#include "CCore.h"
 
 CStartScene::CStartScene(wstring _szName)
 	: CScene(_szName)
+	, m_hSubDC(0)
 {
 }
 
@@ -16,17 +18,16 @@ CStartScene::~CStartScene()
 
 void CStartScene::Enter()
 {
-	CLineMgr::GetInstance()->CreateLine();
-	CLineMgr::GetInstance()->PushObjectList();
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/Logo.bmp", L"Logo");
+}
 
-	//해당씬에 들어갈 오브젝트들 AddObject
-	AddObject(new CObject(500.f, 500.f, 30.f),OBJ_TYPE::ENEMY);
+void CStartScene::Exit()
+{
+	ClearObject();
 }
 
 void CStartScene::Update(float _fDeltaTime)
 {
-	CLineMgr::GetInstance()->CreateLine();
-	CLineMgr::GetInstance()->PushObjectList();
 	/* Update */
 	for (int i = 0; i < (UINT)OBJ_TYPE::END; i++)
 	{
@@ -66,5 +67,8 @@ void CStartScene::Render(HDC _hdc)
 			(*iter)->Render(_hdc);
 		}
 	}
+
+	m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(L"Logo");
+	BitBlt(_hdc, 0, 0, WIDTH, HEIGHT, m_hSubDC, 0, 0, SRCCOPY);
 	TextOut(_hdc, 10, 10, m_szName.c_str(), lstrlen(m_szName.c_str()));
 }

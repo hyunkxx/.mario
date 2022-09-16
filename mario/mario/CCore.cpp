@@ -6,6 +6,9 @@
 #include "CLineMgr.h"
 #include "CLine.h"
 #include "CInputMgr.h"
+#include "CBitmapMgr.h"
+#include "CScrollMgr.h"
+#include "CMapEditor.h"
 
 CCore* CCore::pInstance;
 float CCore::fDeltaTime;
@@ -33,7 +36,7 @@ CCore::~CCore()
 {
 	Release();
 
-	CSceneMgr::Destroy();
+	delete m_szTitle;
 }
 
 void CCore::Destroy()
@@ -57,6 +60,9 @@ void CCore::Initalize(const HINSTANCE _hInstance, const HWND _hWnd, const RECT& 
 	HBITMAP hDefaultBitmap = (HBITMAP)SelectObject(m_subDC, m_hBit);
 	DeleteObject(hDefaultBitmap);
 
+	
+	CMapEditor::GetInst()->Initalize();
+
 	//메뉴씬으로 진입
 	CSceneMgr::GetInstance()->GetCurScene()->Enter();
 }
@@ -76,33 +82,38 @@ void CCore::Process()
 void CCore::update()
 {
 	setDeltaTime(true);
-
 	CInputMgr::GetInstance()->Update();
 	CSceneMgr::GetInstance()->GetCurScene()->Update(m_fDeltaTime);
+
 }
 
 void CCore::render()
 {
-	drawBackground(m_subDC);
-	CSceneMgr::GetInstance()->GetCurScene()->Render(m_subDC);
-
 	/* -------------- 임시 -------------------*/
 	WCHAR* szObjCount = new WCHAR[TEXT_LENGTH];
 	wsprintf(szObjCount, L"Object Count : %d", (int)m_nObjCount);
-	TextOut(m_subDC, WIDTH / 2, 10, szObjCount,lstrlen(szObjCount));
+	TextOut(m_subDC, WIDTH / 2, 10, szObjCount, lstrlen(szObjCount));
+	delete[] szObjCount;
 
-	//모든 렌더링은 이 코드 위에 작성
+	CSceneMgr::GetInstance()->GetCurScene()->Render(m_subDC);
+
 	BitBlt(m_hDC, 0, 0, WIDTH, HEIGHT, m_subDC, 0, 0, SRCCOPY);
 }
 
 void CCore::Release()
 {
+	CBitmapMgr::GetInstance()->Release();
+
 	//현재씬의 모든 오브젝트 해제
 	CSceneMgr::GetInstance()->GetCurScene()->Exit();
 
 	//각종 싱글톤 매니저 해제
 	CSceneMgr::Destroy();
 	CLineMgr::Destroy();
+	CInputMgr::Destroy();
+	CBitmapMgr::Destroy();
+	CScrollMgr::Destroy();
+	CMapEditor::Destroy();
 
 	ReleaseDC(m_hWnd, m_hDC);
 	ReleaseDC(m_hWnd, m_subDC);

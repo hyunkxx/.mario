@@ -1,6 +1,9 @@
 #pragma once
 
-class CScene;
+#include "CScene.h"
+
+class CPlayer;
+class CObject;
 
 class CSceneMgr
 {
@@ -14,6 +17,7 @@ public:
 	static CSceneMgr* GetInstance() { if (!pInstance) { pInstance = new CSceneMgr; } return pInstance; }
 	static void Destroy();
 public:
+	CObject* GetPlayer() { return m_pCurScene->GetPlayer(); }
 	CScene* GetCurScene() { return m_pCurScene; }
 	size_t GetCurIndex() { return m_nCurIndex; }
 	void  PrevScene();

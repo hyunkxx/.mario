@@ -26,20 +26,17 @@ void CInputMgr::Update()
 		{
 			m_tKeyState[i].m_bPrevPressed = true;
 			m_tKeyState[i].m_eState = KEY_STATE::DOWN;
-			continue;
 		}
 		//Press
 		else if (m_tKeyState[i].m_bPrevPressed && GetAsyncKeyState(i) & 0x8000)
 		{
 			m_tKeyState[i].m_eState = KEY_STATE::PRESSED;
-			continue;
 		}
 		//Up
 		else if (m_tKeyState[i].m_bPrevPressed && !(GetAsyncKeyState(i) & 0x8000))
 		{
 			m_tKeyState[i].m_bPrevPressed = false;
 			m_tKeyState[i].m_eState = KEY_STATE::UP;
-			continue;
 		}
 		else if (!m_tKeyState[i].m_bPrevPressed && !(GetAsyncKeyState(i) & 0x8000))
 		{

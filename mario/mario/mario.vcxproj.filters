@@ -72,6 +72,27 @@
     <Filter Include="src\Hyun\06. Line">
       <UniqueIdentifier>{eb8fb263-95dc-4110-9927-e5373711876a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Hyun\03. CObject\01. CPlayer">
+      <UniqueIdentifier>{f2e157e2-3b10-4084-9686-f9498e0cc497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\03. CObject\00. base">
+      <UniqueIdentifier>{3365c71d-e6bb-4e19-9993-776ef34786b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\04. Scene\07. CEditScene">
+      <UniqueIdentifier>{cc11a313-bef5-405d-980d-272089c6df67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\07. CBitmap">
+      <UniqueIdentifier>{2b0ab5a5-7ab1-42da-999a-f11c4fa30f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\08. ScrollMgr">
+      <UniqueIdentifier>{0e193017-426f-4727-b47b-6f7f36c3ef12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\09. CollisionEditor">
+      <UniqueIdentifier>{aa7cd3b4-7268-47c5-bbeb-18be0f4799eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\10. MapData">
+      <UniqueIdentifier>{0da668f5-c610-4f21-b47c-49f44fbe3006}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -95,9 +116,6 @@
     <ClInclude Include="CCore.h">
       <Filter>src\Hyun\02. Core</Filter>
     </ClInclude>
-    <ClInclude Include="CObject.h">
-      <Filter>src\Hyun\03. CObject</Filter>
-    </ClInclude>
     <ClInclude Include="CScene.h">
       <Filter>src\Hyun\04. Scene\00. CSceneBase</Filter>
     </ClInclude>
@@ -119,7 +137,33 @@
     <ClInclude Include="CInputMgr.h">
       <Filter>src\Hyun\05. Managers\01. CInputMgr</Filter>
     </ClInclude>
-    <ClInclude Include="asdassda.h" />
+    <ClInclude Include="CObject.h">
+      <Filter>src\Hyun\03. CObject\00. base</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>src\Hyun\03. CObject\01. CPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>src\Hyun\05. Managers\02. CCollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageEdit.h">
+      <Filter>src\Hyun\04. Scene\07. CEditScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CBitmap.h">
+      <Filter>src\Hyun\07. CBitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CBitmapMgr.h">
+      <Filter>src\Hyun\07. CBitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="CScrollMgr.h">
+      <Filter>src\Hyun\08. ScrollMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapEditor.h">
+      <Filter>src\Hyun\09. CollisionEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="CMapData.h">
+      <Filter>src\Hyun\10. MapData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -130,9 +174,6 @@
     </ClCompile>
     <ClCompile Include="CCore.cpp">
       <Filter>src\Hyun\02. Core</Filter>
-    </ClCompile>
-    <ClCompile Include="CObject.cpp">
-      <Filter>src\Hyun\03. CObject</Filter>
     </ClCompile>
     <ClCompile Include="CSceneMgr.cpp">
       <Filter>src\Hyun\05. Managers\00. CSceneMgr</Filter>
@@ -155,8 +196,32 @@
     <ClCompile Include="CInputMgr.cpp">
       <Filter>src\Hyun\05. Managers\01. CInputMgr</Filter>
     </ClCompile>
-    <ClCompile Include="asdassda.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="CObject.cpp">
+      <Filter>src\Hyun\03. CObject\00. base</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>src\Hyun\03. CObject\01. CPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>src\Hyun\05. Managers\02. CCollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageEdit.cpp">
+      <Filter>src\Hyun\04. Scene\07. CEditScene</Filter>
+    </ClCompile>
+    <ClCompile Include="CBitmap.cpp">
+      <Filter>src\Hyun\07. CBitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="CBitmapMgr.cpp">
+      <Filter>src\Hyun\07. CBitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollMgr.cpp">
+      <Filter>src\Hyun\08. ScrollMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CMapEditor.cpp">
+      <Filter>src\Hyun\09. CollisionEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="CMapData.cpp">
+      <Filter>src\Hyun\10. MapData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,27 +10,31 @@
 
 CLineMgr* CLineMgr::pInstance;
 
+
+//캡슐화 박살나버림 에디트 씬 + 라인매니저 
 CLineMgr::CLineMgr()
-	: m_ptLeft(0.f,0.f)
+	: m_ptLeft(0.f, 0.f)
 	, m_ptRight(0.f, 0.f)
-	, m_bReady(false)
+	, m_bFinish(false)
+	, m_curMousePos({})
 {
 }
 
 CLineMgr::~CLineMgr()
 {
+	for (int i = 0; i < (UINT)SCENE_STATE::STAGE_COUNT ; i++)
+	{
+		for (int j = 0; j < m_vecLines[i].size(); j++)
+			delete m_vecLines[j][i];
+	}
 }
 
-void CLineMgr::SetBeginPoint()
+void CLineMgr::SetBeginPoint(float _x, float _y, SCENE_STATE _eType)
 {
-	size_t index = CSceneMgr::GetInstance()->GetCurIndex();
-	if (m_vecLines[index].size() == 0)
+	if (m_vecLines[(UINT)_eType].size() == 0)
 	{
-		POINT mousePos;
-		GetCursorPos(&mousePos);
-		ScreenToClient(CCore::GetInstance()->GetWindowHandle(), &mousePos);
-		m_ptLeft.fX = (float)mousePos.x;
-		m_ptLeft.fY = (float)mousePos.y;
+		m_ptLeft.fX = _x;
+		m_ptLeft.fY = _y;
 	}
 	else
 	{
@@ -39,33 +43,94 @@ void CLineMgr::SetBeginPoint()
 	}
 }
 
-void CLineMgr::SetEndPoint()
+void CLineMgr::SetEndPoint(float _x, float _y)
 {
-	POINT mousePos;
-	GetCursorPos(&mousePos);
-	ScreenToClient(CCore::GetInstance()->GetWindowHandle(), &mousePos);
-	m_ptRight.fX = (float)mousePos.x;
-	m_ptRight.fY = (float)mousePos.y;
-	m_bReady = true;
+	m_ptRight.fX = _x;
+	m_ptRight.fY = _y;
+	m_bFinish = true;
 }
 
-void CLineMgr::CreateLine()
+void CLineMgr::SaveLine(SCENE_STATE _eType)
 {
-	size_t index = CSceneMgr::GetInstance()->GetCurIndex();
+	HANDLE hFileLine = nullptr;
 
-	if (CInputMgr::GetInstance()->GetKey(VK_LBUTTON, KEY_STATE::DOWN))
-		SetBeginPoint();
-
-	if (CInputMgr::GetInstance()->GetKey(VK_LBUTTON, KEY_STATE::DOWN))
+	switch (_eType)
 	{
-		SetEndPoint();
-
-		if (m_bReady)
-		{
-			m_vecLines[index].push_back(new CLine(m_ptLeft, m_ptRight));
-			m_bReady = false;
-		}
+	case SCENE_STATE::STAGE_1:
+		hFileLine = CreateFile(L"../data/stage_1_line.dat", GENERIC_WRITE , 0 , nullptr , CREATE_ALWAYS , FILE_ATTRIBUTE_NORMAL , nullptr);
+		break;
+	case SCENE_STATE::STAGE_2:
+		hFileLine = CreateFile(L"../data/stage_2_line.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
+	case SCENE_STATE::STAGE_3:
+		hFileLine = CreateFile(L"../data/stage_3_line.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
+	case SCENE_STATE::STAGE_4:
+		hFileLine = CreateFile(L"../data/stage_4_line.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
+	case SCENE_STATE::STAGE_END:
+		hFileLine = CreateFile(L"../data/stage_end_line.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
 	}
+
+	if (hFileLine == INVALID_HANDLE_VALUE)
+		return;
+
+	vector<CLine*> pLine = m_vecLines[(UINT)_eType];
+	DWORD dwByte = 0;
+	
+	for (auto* line : pLine)
+	{
+		if(line != nullptr)
+			WriteFile(hFileLine, &(line->GetLine()), sizeof(CLine), &dwByte, nullptr);
+	}
+
+	CloseHandle(hFileLine);
+
+	MessageBox(CCore::GetInstance()->GetWindowHandle(), L"파일저장 성공", L"Result",MB_OK);
+}
+
+void CLineMgr::LoadLine(SCENE_STATE _eType)
+{
+	CLine line;
+	HANDLE hFileLine = nullptr;
+
+	switch (_eType)
+	{
+	case SCENE_STATE::STAGE_1:
+		hFileLine = CreateFile(L"../data/stage_1_line.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		break;
+	case SCENE_STATE::STAGE_2:
+		hFileLine = CreateFile(L"../data/stage_2_line.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		break;
+	case SCENE_STATE::STAGE_3:
+		hFileLine = CreateFile(L"../data/stage_3_line.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
+	case SCENE_STATE::STAGE_4:
+		hFileLine = CreateFile(L"../data/stage_4_line.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
+	case SCENE_STATE::STAGE_END:
+		hFileLine = CreateFile(L"../data/stage_end_line.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
+	}
+	hFileLine = CreateFile(L"../data/stage_1_line.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+	if (INVALID_HANDLE_VALUE == hFileLine)
+		return;
+
+	DWORD		dwByte = 0;
+	LINE		lines{};
+
+	while (true)
+	{
+		ReadFile(hFileLine, &lines, sizeof(CLine), &dwByte, nullptr);
+		if (dwByte == 0)
+			break;
+
+		m_vecLines[(UINT)_eType].push_back(new CLine(lines.tLPoint, lines.tRPoint));
+	}
+	CloseHandle(hFileLine);
+
+	MessageBox(CCore::GetInstance()->GetWindowHandle(), L"파일로드 성공", L"Result", MB_OK);
 }
 
 void CLineMgr::PushObjectList()

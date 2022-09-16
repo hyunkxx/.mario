@@ -12,8 +12,12 @@ public:
 	CStageOne& operator=(const CStageOne& rhs) = delete;
 public:
 	void Enter() override;
+	void Exit() override;
 	void Update(float _fDeltaTime) override;
 	void Render(HDC _hDC) override;
 private:
+	HDC m_hSubDC;
+	vector<LINE*>* m_vCopyLines;
+	vector<RECT*>* m_vCopyRects;
 };
 

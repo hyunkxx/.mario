@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -147,13 +147,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="asdassda.h" />
+    <ClInclude Include="CBitmap.h" />
+    <ClInclude Include="CBitmapMgr.h" />
+    <ClInclude Include="CMapData.h" />
+    <ClInclude Include="CMapEditor.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CInputMgr.h" />
     <ClInclude Include="CLineMgr.h" />
     <ClInclude Include="CObject.h" />
+    <ClInclude Include="CollisionMgr.h" />
+    <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
+    <ClInclude Include="CScrollMgr.h" />
+    <ClInclude Include="CStageEdit.h" />
     <ClInclude Include="CStageOne.h" />
     <ClInclude Include="CStartScene.h" />
     <ClInclude Include="CLine.h" />
@@ -165,13 +172,20 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="asdassda.cpp" />
+    <ClCompile Include="CBitmap.cpp" />
+    <ClCompile Include="CBitmapMgr.cpp" />
+    <ClCompile Include="CMapData.cpp" />
+    <ClCompile Include="CMapEditor.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CInputMgr.cpp" />
     <ClCompile Include="CLineMgr.cpp" />
     <ClCompile Include="CObject.cpp" />
+    <ClCompile Include="CollisionMgr.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
+    <ClCompile Include="CScrollMgr.cpp" />
+    <ClCompile Include="CStageEdit.cpp" />
     <ClCompile Include="CStageOne.cpp" />
     <ClCompile Include="CStartScene.cpp" />
     <ClCompile Include="CLine.cpp" />

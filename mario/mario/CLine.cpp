@@ -11,7 +11,6 @@ CLine::CLine(MYPOINT& _lPoint, MYPOINT& _rPoint)
 	: CObject()
 	, m_tLine(_lPoint,_rPoint)
 {
-
 }
 
 CLine::CLine(LINE& _line)
