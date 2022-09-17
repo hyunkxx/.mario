@@ -16,6 +16,10 @@ public:
 	void Update(float _fDeltaTime) override;
 	void Render(HDC _hDC) override;
 private:
+	void mapRender(HDC _hdc);
+	void objectRedner(HDC _hdc);
+	void collisionMap();
+private:
 	HDC m_hSubDC;
 	vector<LINE*>* m_vCopyLines;
 	vector<RECT*>* m_vCopyRects;

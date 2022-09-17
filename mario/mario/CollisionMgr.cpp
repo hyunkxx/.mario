@@ -30,9 +30,24 @@ void CCollisionMgr::CollisionRect(list<CObject*> _Dest, list<CObject*> _Src)
 			}
 		}
 	}
-
-
 }
+
+//void CCollisionMgr::CollisionPlayerToRect(list<CObject*> _Dest, list<CObject*> _Src)
+//{
+//	RECT rc{};
+//
+//	for (auto& Dest : _Dest)
+//	{
+//		for (auto& Src : _Src)
+//		{
+//			if (IntersectRect(&rc, &(Dest->GetRect()), &(Src->GetRect())))
+//			{
+//				Dest->SetState(OBJ_STATE::DISABLE);
+//				Src->SetState(OBJ_STATE::DISABLE);
+//			}
+//		}
+//	}
+//}
 
 void CCollisionMgr::CollisionLine(list<CObject*> _lhs, vector<CLine*> _rhs)
 {

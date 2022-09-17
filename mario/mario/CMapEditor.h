@@ -19,7 +19,11 @@ public:
 	HDC& GetMap(MAP _eType) { return m_subDC[(UINT)_eType]; }
 	vector<LINE*>* GetLineList() { return m_vecLines; }
 	vector<RECT*>* GetRectList() { return m_vecRects; }
-	const MapSize* const GetMapSize() { return m_tSize; }
+	
+	UINT GetCurMap() { return m_nCurSettingMap; }
+	wstring GetMapName(MAP _eType) { return m_szMapName[(UINT)_eType]; }
+	MapSize GetMapSize(MAP _eType) { return m_tSize[(UINT)_eType]; }
+
 public:
 	void Initalize();
 	void Update();
@@ -36,5 +40,8 @@ private:
 	HDC m_subDC[(UINT)MAP::END];
 	wstring m_szMapName[(UINT)MAP::END];
 	MapSize m_tSize[(UINT)MAP::END];
+	
+	int viewPosX;
+	int viewPosY;
 };
 

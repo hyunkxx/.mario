@@ -11,7 +11,7 @@ public:
 	virtual ~CPlayer();
 public:
 	void Initalize() override;
-	int Update(float _fDeltaTime) override;
+	int  Update(float _fDeltaTime) override;
 	void LateUpdate(float _fDeltaTime) override;
 	void Render(HDC _hdc) override;
 	void Release() override;
@@ -19,9 +19,12 @@ public:
 	bool IsGround() const { return m_bIsGround; }
 	bool IsJump() const { return m_bIsJump; }
 	float GetMoveSpeed() const { return m_fMoveSpeed; }
-
 	void SetMoveSpeed(float _value) { m_fMoveSpeed = _value; }
 	void AddMoveSpeed(float _value) { m_fMoveSpeed += _value; }
+
+public:
+	void Scroll();
+
 private:
 	void moveUp();
 	void moveDown();

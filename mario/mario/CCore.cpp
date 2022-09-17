@@ -84,11 +84,11 @@ void CCore::update()
 	setDeltaTime(true);
 	CInputMgr::GetInstance()->Update();
 	CSceneMgr::GetInstance()->GetCurScene()->Update(m_fDeltaTime);
-
 }
 
 void CCore::render()
 {
+	SetBkMode(m_subDC, TRANSPARENT);
 	/* -------------- юс╫ц -------------------*/
 	WCHAR* szObjCount = new WCHAR[TEXT_LENGTH];
 	wsprintf(szObjCount, L"Object Count : %d", (int)m_nObjCount);

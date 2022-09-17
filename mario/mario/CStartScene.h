@@ -5,7 +5,7 @@
 //==========================================================================//
 //            CStartScene 클래스   게임 최초 실행시 처음시작되는 메뉴 씬		//
 //==========================================================================//
-// CScene을 상속 :: CStageOne > CStageTwo > CStageThree > CStageFour 클래스  //
+// CScene을 상속 :: CStageOne > CStageOne > CStageThree > CStageFour 클래스  //
 //                           총 4개의 스테이지                               //
 //                       이전씬은 PrevScene() 호출						  	//
 //                       다음씬은 NextScene() 호출						  	//
@@ -28,6 +28,9 @@ public:
 	void Update(float _fDeltaTime) override;
 	void Render(HDC _hDC) override;
 private:
+private:
 	HDC m_hSubDC;
+	bool m_bMenuOn;
+	RECT m_rcMenuLine;
 };
 

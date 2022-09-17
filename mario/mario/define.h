@@ -20,11 +20,11 @@
 enum class OBJ_TYPE
 {
 	DEFAULT,      //초기값
-	PLAYER,       //플레이어
-	ENEMY,        //적
-	INTERACTION,  //상호작용 오브젝트
 	ENVIRONMENT,  //환경 오브젝트
 	TERRAIN,      //지형
+	ENUMY,	      //몬스터
+	PLAYER,       //플레이어
+	INTERACTION,  //상호작용 오브젝트
 	UI,			  //UI
 	END
 };
@@ -59,7 +59,12 @@ enum class KEY_STATE
 
 enum class MAP
 {
-	MENU,
-	MAIN,
+	STAGE_START,
+	STAGE_1,
+	STAGE_2,
+	STAGE_3,
+	STAGE_4,
+	STAGE_ENDING,
+	STAGE_EDIT,
 	END
 };

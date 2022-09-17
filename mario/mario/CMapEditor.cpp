@@ -10,7 +10,9 @@ CMapEditor* CMapEditor::pInstance;
 
 CMapEditor::CMapEditor()
 	: m_bDraw(true)
-	, m_nCurSettingMap(0)
+	, m_nCurSettingMap(1)
+	, viewPosX(0)
+	, viewPosY(0)
 {
 	for (auto* subDC : m_subDC)
 		subDC = nullptr;
@@ -115,16 +117,29 @@ void CMapEditor::CollisionRender(HDC _hdc , MAP _eType)
 	DeleteObject(redPen);
 }
 
+
 void CMapEditor::Initalize()
 {
-	m_szMapName[(UINT)MAP::MENU] = L"menu1";
-	m_szMapName[(UINT)MAP::MAIN] = L"main1";
+	m_szMapName[(UINT)MAP::STAGE_START] = L"start";
+	m_szMapName[(UINT)MAP::STAGE_1] = L"stage_1";
+	m_szMapName[(UINT)MAP::STAGE_2] = L"stage_2";
+	m_szMapName[(UINT)MAP::STAGE_3] = L"stage_3";
+	m_szMapName[(UINT)MAP::STAGE_4] = L"stage_4";
+	m_szMapName[(UINT)MAP::STAGE_ENDING] = L"stage_ending";
 	
-	m_tSize[(UINT)MAP::MENU] = { 1920.f,681.f };
-	m_tSize[(UINT)MAP::MAIN] = { 1773.f,1464.f };
+	m_tSize[(UINT)MAP::STAGE_START] = { 800.f, 600.f };
+	m_tSize[(UINT)MAP::STAGE_1] = { 1106.f,618.f};
+	m_tSize[(UINT)MAP::STAGE_2] = { 1920.f,681.f};
+	m_tSize[(UINT)MAP::STAGE_3] = { 1767.f,660.f};
+	m_tSize[(UINT)MAP::STAGE_4] = { 1890.f,941.f};
+	m_tSize[(UINT)MAP::STAGE_ENDING] = { 800.f,600.f};
 	
-	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/menu_1.bmp", m_szMapName[(UINT)MAP::MENU].c_str());
-	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/main_1.bmp", m_szMapName[(UINT)MAP::MAIN].c_str());
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/intro.bmp", m_szMapName[(UINT)MAP::STAGE_START].c_str());
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/stage_1.bmp", m_szMapName[(UINT)MAP::STAGE_1].c_str());
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/stage_2.bmp", m_szMapName[(UINT)MAP::STAGE_2].c_str());
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/stage_3.bmp", m_szMapName[(UINT)MAP::STAGE_3].c_str());
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/stage_4.bmp", m_szMapName[(UINT)MAP::STAGE_4].c_str());
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/Logo.bmp", m_szMapName[(UINT)MAP::STAGE_ENDING].c_str());
 }
 
 void CMapEditor::Update()
@@ -136,7 +151,7 @@ void CMapEditor::Update()
 	GetCursorPos(&m_mousePos);
 	ScreenToClient(CCore::GetInstance()->GetWindowHandle(), &m_mousePos);
 
-	float ScrollSpeed = 200.f;
+	float ScrollSpeed = 400.f;
 	//스크롤 값
 	float scX = CScrollMgr::GetInst()->GetScrollX();
 	float scY = CScrollMgr::GetInst()->GetScrollY();
@@ -144,33 +159,48 @@ void CMapEditor::Update()
 	
 	//화면 스크롤
 	if (CInputMgr::GetInstance()->GetKey(VK_RIGHT, KEY_STATE::PRESSED))
-		CScrollMgr::GetInst()->SetScrollX(-ScrollSpeed * DeltaTime);
+		viewPosX -= ScrollSpeed * DeltaTime;
 	if (CInputMgr::GetInstance()->GetKey(VK_LEFT, KEY_STATE::PRESSED))
-		CScrollMgr::GetInst()->SetScrollX(+ScrollSpeed * DeltaTime);
+		viewPosX += ScrollSpeed * DeltaTime;
 	if (CInputMgr::GetInstance()->GetKey(VK_UP, KEY_STATE::PRESSED))
-		CScrollMgr::GetInst()->SetScrollY(+ScrollSpeed * DeltaTime);
+		viewPosY += ScrollSpeed * DeltaTime;
 	if (CInputMgr::GetInstance()->GetKey(VK_DOWN, KEY_STATE::PRESSED))
-		CScrollMgr::GetInst()->SetScrollY(-ScrollSpeed * DeltaTime);
+		viewPosY -= ScrollSpeed * DeltaTime;
+
+	CScrollMgr::GetInst()->SetScrollX(viewPosX);
+	CScrollMgr::GetInst()->SetScrollY(viewPosY);
 
 	CScrollMgr::GetInst()->ScrollLock(m_tSize[m_nCurSettingMap].m_iWidth, m_tSize[m_nCurSettingMap].m_iHeight);
 
-	//비트맵 변경
-	if (CInputMgr::GetInstance()->GetKey('E', KEY_STATE::DOWN))
+	//맵 변경
+	if (CInputMgr::GetInstance()->GetKey('R', KEY_STATE::DOWN))
 	{
-		if (m_nCurSettingMap < (UINT)MAP::END-1)
+		if (m_nCurSettingMap < (UINT)MAP::STAGE_ENDING)
 			m_nCurSettingMap++;
 		else
-			m_nCurSettingMap = 0;
+			m_nCurSettingMap = (UINT)MAP::STAGE_1;
 	}
 
-	//세이브
+	//현제 맵 세이브
 	if (CInputMgr::GetInstance()->GetKey('Q', KEY_STATE::DOWN))
 		CMapEditor::GetInst()->SaveData((MAP)m_nCurSettingMap);
-	//로드
+
+	//모든 맵 세이브
 	if (CInputMgr::GetInstance()->GetKey('W', KEY_STATE::DOWN))
-		CMapEditor::GetInst()->LoadData((MAP)m_nCurSettingMap);
+	{
+		for(int i = 0 ; i < (UINT)MAP::END ; i ++)
+			CMapEditor::GetInst()->SaveData((MAP)i);
+	}
+	
+	//모두 로드
+	if (CInputMgr::GetInstance()->GetKey('E', KEY_STATE::DOWN))
+	{
+		for (int i = 0; i < (UINT)MAP::END; i++)
+			CMapEditor::GetInst()->LoadData((MAP)i);
+	}
+
 	//그리기 토글
-	if (CInputMgr::GetInstance()->GetKey('R', KEY_STATE::DOWN))
+	if (CInputMgr::GetInstance()->GetKey('T', KEY_STATE::DOWN))
 		CMapEditor::GetInst()->DrawToggle();
 
 	if (CInputMgr::GetInstance()->GetKey(VK_LBUTTON, KEY_STATE::DOWN))
@@ -219,11 +249,15 @@ void CMapEditor::Render(HDC _hdc)
 {
 	m_subDC[m_nCurSettingMap] = CBitmapMgr::GetInstance()->FindBmp(m_szMapName[m_nCurSettingMap].c_str());
 
-	BitBlt(_hdc,
-		(int)CScrollMgr::GetInst()->GetScrollX(), (int)CScrollMgr::GetInst()->GetScrollY(),   (int)m_tSize[m_nCurSettingMap].m_iWidth, (int)m_tSize[m_nCurSettingMap].m_iHeight, m_subDC[m_nCurSettingMap], 0, 0, SRCCOPY);
+	BitBlt(_hdc
+		, (int)CScrollMgr::GetInst()->GetScrollX()
+		, (int)CScrollMgr::GetInst()->GetScrollY()
+		, (int)m_tSize[m_nCurSettingMap].m_iWidth
+		, (int)m_tSize[m_nCurSettingMap].m_iHeight
+		, m_subDC[m_nCurSettingMap], 0, 0, SRCCOPY);
 
 	WCHAR szText[128];
-	wsprintf(szText, L"Q 저장하기   W 불러오기   E 맵 변경   R 콜리전 보이기/숨기기 %s",m_szMapName[m_nCurSettingMap].c_str());
+	wsprintf(szText, L"[Q] 저장   [W] 모두저장   [E] 로드  [R] 맵 변경  [T] 콜리전 보이기/숨기기  [현재맵]  %s",m_szMapName[m_nCurSettingMap].c_str());
 
 	CMapEditor::GetInst()->CollisionRender(_hdc, (MAP)m_nCurSettingMap);
 
@@ -238,16 +272,22 @@ void CMapEditor::SaveData(MAP _eType)
 	//CMapData 클래스 만들것
 	switch (_eType)
 	{
-	case MAP::MENU:
-		hFileLine = CreateFile(L"../data/menu_line_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-		hFileRect = CreateFile(L"../data/menu_rect_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+	case MAP::STAGE_1:
+		hFileLine = CreateFile(L"../data/stage1_line_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		hFileRect = CreateFile(L"../data/stage1_rect_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 		break;
-	case MAP::MAIN:
-		hFileLine = CreateFile(L"../data/main_line_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
-		hFileRect = CreateFile(L"../data/main_rect_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+	case MAP::STAGE_2:
+		hFileLine = CreateFile(L"../data/stage2_line_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		hFileRect = CreateFile(L"../data/stage2_rect_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 		break;
-	case MAP::END:
-		return;
+	case MAP::STAGE_3:
+		hFileLine = CreateFile(L"../data/stage3_line_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		hFileRect = CreateFile(L"../data/stage3_rect_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
+	case MAP::STAGE_4:
+		hFileLine = CreateFile(L"../data/stage4_line_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		hFileRect = CreateFile(L"../data/stage4_rect_colision.dat", GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+		break;
 	default:
 		return;
 	}
@@ -284,16 +324,22 @@ void CMapEditor::LoadData(MAP _eType)
 	HANDLE hFileRect = nullptr;
 	switch (_eType)
 	{
-	case MAP::MENU:
-		hFileLine = CreateFile(L"../data/menu_line_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
-		hFileRect = CreateFile(L"../data/menu_rect_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+	case MAP::STAGE_1:
+		hFileLine = CreateFile(L"../data/stage1_line_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		hFileRect = CreateFile(L"../data/stage1_rect_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
 		break;
-	case MAP::MAIN:
-		hFileLine = CreateFile(L"../data/main_line_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
-		hFileRect = CreateFile(L"../data/main_rect_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+	case MAP::STAGE_2:
+		hFileLine = CreateFile(L"../data/stage2_line_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		hFileRect = CreateFile(L"../data/stage2_rect_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
 		break;
-	case MAP::END:
-		return;
+	case MAP::STAGE_3:
+		hFileLine = CreateFile(L"../data/stage3_line_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		hFileRect = CreateFile(L"../data/stage3_rect_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		break;;
+	case MAP::STAGE_4:
+		hFileLine = CreateFile(L"../data/stage4_line_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		hFileRect = CreateFile(L"../data/stage4_rect_colision.dat", GENERIC_READ, 0, nullptr, OPEN_EXISTING, OPEN_EXISTING, nullptr);
+		break;
 	default:
 		return;
 	}

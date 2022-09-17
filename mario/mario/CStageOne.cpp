@@ -13,6 +13,7 @@
 #include "CBitmapMgr.h"
 #include "CScrollMgr.h"
 #include "CMapEditor.h"
+#include "CPotal.h"
 
 CStageOne::CStageOne(wstring _szName)
 	: CScene(_szName)
@@ -28,7 +29,12 @@ void CStageOne::Enter()
 {
 	size_t i = CSceneMgr::GetInstance()->GetCurIndex();
 
+	//오브젝트 삽입
 	AddObject(new CPlayer(100.f, 500.f, 30.f), OBJ_TYPE::PLAYER);
+	CScrollMgr::GetInst()->SetScrollX(0);
+	CScrollMgr::GetInst()->SetScrollY(0);
+
+	AddObject(new CPotal(10.f, 10.f, 30.f), OBJ_TYPE::ENVIRONMENT);
 }
 
 void CStageOne::Exit()
@@ -38,8 +44,6 @@ void CStageOne::Exit()
 
 void CStageOne::Update(float _fDeltaTime)
 {
-	//CMapEditor::GetInst()->Update();
-
 	/* Update */
 	for (int i = 0; i < (UINT)OBJ_TYPE::END; i++)
 	{
@@ -65,36 +69,36 @@ void CStageOne::Update(float _fDeltaTime)
 		for (auto iter = m_arrObject[i].begin(); iter != m_arrObject[i].end(); ++iter)
 		{
 			(*iter)->LateUpdate(_fDeltaTime);
-			
 		}
 	}
-
-
-	list<CObject*> playerList = *(CSceneMgr::GetInstance()->GetCurScene()->GetObjectList(OBJ_TYPE::PLAYER));
-	CCollisionMgr::CollisionLine(playerList, *(CLineMgr::GetInstance()->GetLines(SCENE_STATE::STAGE_1)));
 }
 
 void CStageOne::Render(HDC _hdc)
 {	
-	SetBkMode(_hdc, TRANSPARENT);
+	mapRender(_hdc);
+	objectRedner(_hdc);
+
+	TextOut(_hdc, 10, 10, m_szName.c_str(), lstrlen(m_szName.c_str()));
+}
+
+void CStageOne::mapRender(HDC _hdc)
+{
+	size_t curMap = CSceneMgr::GetInstance()->GetCurIndex();
+	wstring mapName = CMapEditor::GetInst()->GetMapName((MAP)curMap);
+	m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(mapName.c_str());
+
+	MapSize mapSize = CMapEditor::GetInst()->GetMapSize((MAP)curMap);
 	
-	//CMapEditor::GetInst()->Render(_hdc);
-
-	const MapSize* const mapSize = CMapEditor::GetInst()->GetMapSize();
-
-	m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(L"main1");
-
 	BitBlt(_hdc
-		,(int)CScrollMgr::GetInst()->GetScrollX()
-		,(int)CScrollMgr::GetInst()->GetScrollY(),
-		mapSize[1].m_iWidth,
-		mapSize[1].m_iHeight,
+		, (int)CScrollMgr::GetInst()->GetScrollX()
+		, (int)CScrollMgr::GetInst()->GetScrollY()
+		, (int)mapSize.m_iWidth
+		, (int)mapSize.m_iHeight,
 		m_hSubDC, 0, 0, SRCCOPY);
+}
 
-	//m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(L"main1");
-	//m_hSubDC = CMapEditor::GetInst()->GetMap(MAP::MAIN);
-	//BitBlt(_hdc, 0,0, 1920, 681, m_hSubDC, 0, 0, SRCCOPY);
-
+void CStageOne::objectRedner(HDC _hdc)
+{
 	for (int i = 0; i < (UINT)OBJ_TYPE::END; i++)
 	{
 		for (auto iter = m_arrObject[i].begin(); iter != m_arrObject[i].end(); ++iter)
@@ -102,6 +106,11 @@ void CStageOne::Render(HDC _hdc)
 			(*iter)->Render(_hdc);
 		}
 	}
+}
 
-	TextOut(_hdc, 10, 10, m_szName.c_str(), lstrlen(m_szName.c_str()));
+void CStageOne::collisionMap()
+{
+	//라인충돌
+	/*list<CObject*> playerList = *(CSceneMgr::GetInstance()->GetCurScene()->GetObjectList(OBJ_TYPE::PLAYER));
+	CCollisionMgr::CollisionLine(playerList, *(CLineMgr::GetInstance()->GetLines(SCENE_STATE::STAGE_1)));*/
 }

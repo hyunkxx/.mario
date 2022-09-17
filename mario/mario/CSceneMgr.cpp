@@ -4,8 +4,12 @@
 #include "CObject.h"
 #include "CScene.h"
 #include "CStartScene.h"
+
 #include "CStageOne.h"
+#include "CStageTwo.h"
+
 #include "CStageEdit.h"
+#include "CScrollMgr.h"
 
 
 CSceneMgr* CSceneMgr::pInstance;
@@ -16,10 +20,10 @@ CSceneMgr::CSceneMgr()
 	//스테이지 생성
 	m_arrScene[(UINT)SCENE_STATE::STAGE_START] = new CStartScene(L"Start Scene");
 	m_arrScene[(UINT)SCENE_STATE::STAGE_1]     = new CStageOne(L"Stage 1");
-	m_arrScene[(UINT)SCENE_STATE::STAGE_2]     = new CStartScene(L"Stage 2");
+	m_arrScene[(UINT)SCENE_STATE::STAGE_2]     = new CStageTwo(L"Stage 2");
 	m_arrScene[(UINT)SCENE_STATE::STAGE_3]     = new CStageOne(L"Stage 3");
-	m_arrScene[(UINT)SCENE_STATE::STAGE_4]     = new CStartScene(L"Stage 4");
-	m_arrScene[(UINT)SCENE_STATE::STAGE_END]   = new CStartScene(L"End Stage");
+	m_arrScene[(UINT)SCENE_STATE::STAGE_4]     = new CStageOne(L"Stage 4");
+	m_arrScene[(UINT)SCENE_STATE::STAGE_END]   = new CStageOne(L"End Stage");
 	m_arrScene[(UINT)SCENE_STATE::STAGE_EDIT]  = new CStageEdit(L"Edit Stage");
 
 	//기본 씬은 스타트 씬
@@ -46,6 +50,7 @@ void CSceneMgr::PrevScene()
 		m_nCurIndex--;
 
 	m_pCurScene->Exit();
+	CScrollMgr::GetInst()->Reset();
 	m_pCurScene = m_arrScene[m_nCurIndex];
 	m_pCurScene->Enter();
 }
@@ -56,7 +61,7 @@ void CSceneMgr::NextScene()
 		m_nCurIndex++;
 	
 	m_pCurScene->Exit();
-	m_pCurScene->Exit();
+	CScrollMgr::GetInst()->Reset();
 	m_pCurScene = m_arrScene[m_nCurIndex];
 	m_pCurScene->Enter();
 }

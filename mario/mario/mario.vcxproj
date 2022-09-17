@@ -157,15 +157,18 @@
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CPotal.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneMgr.h" />
     <ClInclude Include="CScrollMgr.h" />
     <ClInclude Include="CStageEdit.h" />
     <ClInclude Include="CStageOne.h" />
+    <ClInclude Include="CStageTwo.h" />
     <ClInclude Include="CStartScene.h" />
     <ClInclude Include="CLine.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="hyunAnimation.h" />
     <ClInclude Include="mario.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -182,13 +185,16 @@
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CPotal.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CScrollMgr.cpp" />
     <ClCompile Include="CStageEdit.cpp" />
     <ClCompile Include="CStageOne.cpp" />
+    <ClCompile Include="CStageTwo.cpp" />
     <ClCompile Include="CStartScene.cpp" />
     <ClCompile Include="CLine.cpp" />
+    <ClCompile Include="hyunAnimation.cpp" />
     <ClCompile Include="mario.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
