@@ -29,9 +29,12 @@ private:
 	void moveLeft();
 	void scrollOffset();
 	void onLine();
+	void gravity(bool _value);
 private:
 	float m_fMoveSpeed;
 	bool m_bIsJump;
 	bool m_bIsGround;
+
+	ULONGLONG beginTime;
 };
 

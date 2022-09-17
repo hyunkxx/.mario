@@ -122,7 +122,7 @@ void CMapEditor::Initalize()
 	
 	m_tSize[(UINT)MAP::MENU] = { 1920.f,681.f };
 	m_tSize[(UINT)MAP::MAIN] = { 1773.f,1464.f };
-
+	
 	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/menu_1.bmp", m_szMapName[(UINT)MAP::MENU].c_str());
 	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/main_1.bmp", m_szMapName[(UINT)MAP::MAIN].c_str());
 }

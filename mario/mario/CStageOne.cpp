@@ -29,18 +29,11 @@ void CStageOne::Enter()
 	size_t i = CSceneMgr::GetInstance()->GetCurIndex();
 
 	AddObject(new CPlayer(100.f, 500.f, 30.f), OBJ_TYPE::PLAYER);
-	//CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/menu_1.bmp", L"menu");
-	//CBitmapMgr::GetInstance()->InsertBmp(L"../Image/map/main_1.bmp", L"main");
-
-	m_vCopyLines = CMapEditor::GetInst()->GetLineList();
-	m_vCopyRects = CMapEditor::GetInst()->GetRectList();
 }
 
 void CStageOne::Exit()
 {
 	ClearObject();
-	m_vCopyLines->clear();
-	m_vCopyRects->clear();
 }
 
 void CStageOne::Update(float _fDeltaTime)
@@ -75,6 +68,8 @@ void CStageOne::Update(float _fDeltaTime)
 			
 		}
 	}
+
+
 	list<CObject*> playerList = *(CSceneMgr::GetInstance()->GetCurScene()->GetObjectList(OBJ_TYPE::PLAYER));
 	CCollisionMgr::CollisionLine(playerList, *(CLineMgr::GetInstance()->GetLines(SCENE_STATE::STAGE_1)));
 }
@@ -83,6 +78,8 @@ void CStageOne::Render(HDC _hdc)
 {	
 	SetBkMode(_hdc, TRANSPARENT);
 	
+	//CMapEditor::GetInst()->Render(_hdc);
+
 	const MapSize* const mapSize = CMapEditor::GetInst()->GetMapSize();
 
 	m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(L"main1");
@@ -90,13 +87,13 @@ void CStageOne::Render(HDC _hdc)
 	BitBlt(_hdc
 		,(int)CScrollMgr::GetInst()->GetScrollX()
 		,(int)CScrollMgr::GetInst()->GetScrollY(),
-		mapSize[0].m_iWidth,
-		mapSize[0].m_iHeight,
+		mapSize[1].m_iWidth,
+		mapSize[1].m_iHeight,
 		m_hSubDC, 0, 0, SRCCOPY);
 
 	//m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(L"main1");
-	////m_hSubDC = CMapEditor::GetInst()->GetMap(MAP::MAIN);
-	//BitBlt(_hdc, (int)x, (int)y, 1920, 681, m_hSubDC, 0, 0, SRCCOPY);
+	//m_hSubDC = CMapEditor::GetInst()->GetMap(MAP::MAIN);
+	//BitBlt(_hdc, 0,0, 1920, 681, m_hSubDC, 0, 0, SRCCOPY);
 
 	for (int i = 0; i < (UINT)OBJ_TYPE::END; i++)
 	{
