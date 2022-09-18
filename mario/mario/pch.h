@@ -111,6 +111,25 @@ public:
 	}
 };
 
+
+typedef struct tagInfo
+{
+	float		fX;
+	float		fY;
+	float		fCX;
+	float		fCY;
+}MON_INFO;
+
+typedef struct tagFrame
+{
+	int		iStart;		// 몇 번 인덱스부터 출력할 것인가
+	int		iEnd;		// 몇 번 인덱스까지 출력할 것인가
+	int		iMotion;	// 몇 번 모션을 출력할 것인가
+	DWORD	dwSpeed;	// 어떤 속도로 애니메이션을 재생할 것인가
+	DWORD	dwTime;		// 시간 값에 따른 애니메이션 재생 속도 제어용
+
+}FRAME;
+
 class CTagFinder
 {
 public:

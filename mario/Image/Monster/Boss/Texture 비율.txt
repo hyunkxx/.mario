@@ -1,0 +1,117 @@
+
+Boss1
+
+================================
+
+Left Head 
+
+stand   261 209
+skill2  285 268
+skill1  275 269
+die	253 209
+Hit 	276 226
+attack3 353 353
+attack3.Hit 118 87
+attack3 Effect 216 242
+attack2 353 353
+attack2.Hit 118 87
+attack2 Effect 216 242
+attack1 546 645
+attack1.Hit 110 113
+
+Center Head
+
+stand 161 332
+skill1 201 347
+skill2 221 372
+skill3 215 357
+Hit 169 343
+Die 161 333
+
+attack1 552 777
+attack1.Hit 99 107
+attack1 Effect 85 128  /
+attack2 221 476
+attack2.Hit 92 91
+attack2 Effect 111 110
+attack3 221 476
+attack3.Hit 92 91
+attack3 Effect 111 105
+
+Right Head
+
+stand 261 209
+skill2  285 268
+skill1 275 269
+die	253 209
+Hit 	
+attack3 349 353
+attack3.Hit 78 75
+attack3 Effect 180 845
+attack2 349 353
+attack2.Hit 78 75
+attack2 Effect 180 845
+attack1 606 696
+attack1.Hit 72 82
+attack1.Effect 143 81
+
+Left Body
+
+stand 215 144
+skill3 302 215
+skill2 316 188
+skill1 373 229
+Hit 233 189
+Die 210 141
+attack 1 375 227
+attack 1 Hit 185 160
+
+Right Body
+
+stand 215 144
+skill3 302 215
+skill2 315 188
+skill1 373 229
+Hit 233 189
+Die 210 141
+attack 1 375 227
+attack 1 Hit 185 160
+
+Wing
+
+stand 590 296
+skill3 918 296
+skill2 1016 558
+skill1 634 371
+
+Hit 610 267
+Die 574 297
+
+DownBody
+
+stand 514 192
+Die   514 197
+Hit   514 218
+attack4 590 257
+attack4 Hit 197 119
+attack3 564 239
+attack3.Hit 105 107
+attack2  590 257
+attack2 Hit 197 119
+attack1 564 239
+attack1.Hit 105 107
+
+Tail
+
+stand 406 146
+skill1 435 223
+Hit  404 146
+Die 407 146
+attack1 552 426
+attack1.Hit 138 120
+
+
+
+
+
+Hit 514 218

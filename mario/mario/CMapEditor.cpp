@@ -372,5 +372,5 @@ void CMapEditor::LoadData(MAP _eType)
 	CloseHandle(hFileLine);
 	CloseHandle(hFileRect);
 
-	MessageBox(CCore::GetInstance()->GetWindowHandle(), L"파일로드 성공", L"Result", MB_OK);
+	//MessageBox(CCore::GetInstance()->GetWindowHandle(), L"파일로드 성공", L"Result", MB_OK);
 }

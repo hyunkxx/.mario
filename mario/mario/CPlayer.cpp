@@ -15,6 +15,13 @@ CPlayer::CPlayer()
 	, m_fMoveSpeed(200.f)
 	, m_bIsJump(false)
 	, m_bIsGround(true)
+<<<<<<< Updated upstream
+=======
+	, m_pClipIdle_r(nullptr)
+	, m_pClipWalk_r(nullptr)
+	, m_eState(ANIM::IDLE_R)
+	, m_bUse(false)
+>>>>>>> Stashed changes
 {
 	m_bIsJump = false;
 	m_bIsFloor = false;
@@ -27,6 +34,13 @@ CPlayer::CPlayer(float _x, float _y, float _scale)
 	, m_fMoveSpeed(200.f)
 	, m_bIsJump(false)
 	, m_bIsGround(true)
+<<<<<<< Updated upstream
+=======
+	, m_pClipIdle_r(nullptr)
+	, m_pClipWalk_r(nullptr)
+	, m_eState(ANIM::IDLE_R)
+	, m_bUse(false)
+>>>>>>> Stashed changes
 {
 	m_bIsJump = false;
 	m_bIsFloor = false;
@@ -39,6 +53,13 @@ CPlayer::CPlayer(Transform _transform)
 	, m_fMoveSpeed(200.f)
 	, m_bIsJump(false)
 	, m_bIsGround(true)
+<<<<<<< Updated upstream
+=======
+	, m_pClipIdle_r(nullptr)
+	, m_pClipWalk_r(nullptr)
+	, m_eState(ANIM::IDLE_R)
+	, m_bUse(false)
+>>>>>>> Stashed changes
 {
 	m_bIsJump = false;
 	m_bIsFloor = false;
@@ -52,13 +73,77 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initalize()
 {
+<<<<<<< Updated upstream
 	m_fMoveSpeed = 150.f;
+=======
+	m_fMoveSpeed=200.f;
+	SetScale(62.f);
+	m_eState = ANIM::IDLE_R;
+	m_bUse   = false;
+
+	//의존성 주입 
+	m_pClipIdle_r = new CAnimClip(this);
+	m_pClipWalk_r = new CAnimClip(this);
+	m_pClipIdle_l = new CAnimClip(this);
+	m_pClipWalk_l = new CAnimClip(this);
+	m_pClipRope  = new CAnimClip(this);
+
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/stand_0.bmp", L"stand0_r");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/stand_1.bmp", L"stand1_r");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/stand_2.bmp", L"stand2_r");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/stand_3.bmp", L"stand3_r");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/stand_4.bmp", L"stand4_r");
+
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/walk_0.bmp", L"walk0_r");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/walk_1.bmp", L"walk1_r");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/walk_2.bmp", L"walk2_r");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/right/walk_3.bmp", L"walk3_r");
+
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/stand_0.bmp", L"stand0_l");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/stand_1.bmp", L"stand1_l");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/stand_2.bmp", L"stand2_l");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/stand_3.bmp", L"stand3_l");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/stand_4.bmp", L"stand4_l");
+															  
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/walk_0.bmp", L"walk0_l");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/walk_1.bmp", L"walk1_l");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/walk_2.bmp", L"walk2_l");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/left/walk_3.bmp", L"walk3_l");
+
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/rope/Player_LOPE1.bmp", L"LOPE1");
+	CBitmapMgr::GetInstance()->InsertBmp(L"../Image/player_res/rope/Player_LOPE2.bmp", L"LOPE2");
+
+	m_pClipIdle_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand0_r"), { 50,70 });
+	m_pClipIdle_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand1_r"), { 50,70 });
+	m_pClipIdle_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand2_r"), { 50,70 });
+	m_pClipIdle_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand3_r"), { 50,70 });
+	m_pClipIdle_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand4_r"), { 50,70 });
+
+	m_pClipWalk_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk0_r"), { 66,70 });
+	m_pClipWalk_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk1_r"), { 66,70 });
+	m_pClipWalk_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk2_r"), { 66,70 });
+	m_pClipWalk_r->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk3_r"), { 66,70 });
+
+	m_pClipIdle_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand0_l"), { 50,70 });
+	m_pClipIdle_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand1_l"), { 50,70 });
+	m_pClipIdle_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand2_l"), { 50,70 });
+	m_pClipIdle_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand3_l"), { 50,70 });
+	m_pClipIdle_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"stand4_l"), { 50,70 });
+
+	m_pClipWalk_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk0_l"), { 66,70 });
+	m_pClipWalk_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk1_l"), { 66,70 });
+	m_pClipWalk_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk2_l"), { 66,70 });
+	m_pClipWalk_l->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"walk3_l"), { 66,70 });
+
+	m_pClipRope->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"LOPE1"), { 64,74 });
+	m_pClipRope->AddClip(CBitmapMgr::GetInstance()->FindBmp(L"LOPE2"), { 64,72 });
+>>>>>>> Stashed changes
 }
 
 int CPlayer::Update(float _fDeltaTime)
 {
 	CObject::Update(_fDeltaTime);
-
+	onLine();
 	beginTime = GetTickCount64();
 
 	m_bIsJump = false;
@@ -84,13 +169,9 @@ int CPlayer::Update(float _fDeltaTime)
 
 void CPlayer::LateUpdate(float _fDeltaTime)
 {
-	if (m_bIsGround)
-		onLine();
-
 	size_t curMap = CSceneMgr::GetInstance()->GetCurIndex();
 	MapSize size = CMapEditor::GetInst()->GetMapSize((MAP)curMap);
 	CScrollMgr::GetInst()->ScrollLock(size.m_iWidth, size.m_iHeight);
-
 	//충돌처리
 	vector<LINE*> lines = CMapEditor::GetInst()->GetLineList((MAP)curMap);
 	vector<RECT*> rects = CMapEditor::GetInst()->GetRectList((MAP)curMap);
@@ -181,6 +262,7 @@ void CPlayer::Scroll()
 	}
 }
 
+<<<<<<< Updated upstream
 
 void CPlayer::KeyInput()
 {
@@ -206,6 +288,62 @@ void CPlayer::KeyInput()
 //		m_bIsFloor = true;
 //
 //#endif // _DEBUG
+=======
+//
+void CPlayer::RopeRide(float _x)
+{
+	if(CInputMgr::GetInstance()->GetKey(VK_DOWN, KEY_STATE::PRESSED))
+		SetY(GetY() + 10.f);
+	if (CInputMgr::GetInstance()->GetKey(VK_UP, KEY_STATE::PRESSED))
+		SetY(GetY() - 10.f);
+}
+//
+
+void CPlayer::KeyInput()
+{
+	if (CInputMgr::GetInstance()->GetKey(VK_F12, KEY_STATE::DOWN))
+		bDebug = !bDebug;
+
+	//아래점프
+	if (CInputMgr::GetInstance()->GetKey(VK_DOWN, KEY_STATE::PRESSED) && CInputMgr::GetInstance()->GetKey(VK_SPACE, KEY_STATE::DOWN))
+	{
+		SetY(GetY() + 5.f);
+		return;
+	}
+
+	/*if(CInputMgr::GetInstance()->GetKey(VK_RIGHT, KEY_STATE::DOWN)
+		CSceneMgr::GetIns*/
+
+
+	if (CInputMgr::GetInstance()->GetKey(VK_RIGHT, KEY_STATE::PRESSED))
+		moveRight();
+	if (CInputMgr::GetInstance()->GetKey(VK_LEFT, KEY_STATE::PRESSED))
+		moveLeft();
+
+	if (CInputMgr::GetInstance()->GetKey(VK_SPACE, KEY_STATE::DOWN))
+		m_bIsJump = true;
+
+	if (CInputMgr::GetInstance()->GetKey(VK_UP, KEY_STATE::DOWN))
+		m_bUse = true;
+	else
+		m_bUse = false;
+
+	if (m_bIsonLine)
+	{
+		if (CInputMgr::GetInstance()->GetKey(VK_UP, KEY_STATE::PRESSED))
+		{
+			SetY(GetY() - 1.f);
+			m_bIsFloor = true;
+			m_tTransform.fX = m_fPLine;
+		}
+		if (CInputMgr::GetInstance()->GetKey(VK_DOWN, KEY_STATE::PRESSED))
+		{
+			SetY(GetY() + 1.f);
+			m_bIsFloor = true;
+			m_tTransform.fX = m_fPLine;
+		}
+	}
+>>>>>>> Stashed changes
 }
 
 
@@ -250,24 +388,77 @@ void CPlayer::moveLeft()
 
 void CPlayer::onLine()
 {
-	vector<CLine*> lines = *(CLineMgr::GetInstance()->GetLines(SCENE_STATE::STAGE_1));
-
-	for (auto* line : lines)
+	size_t curMap = CSceneMgr::GetInstance()->GetCurIndex();
+	vector<LINE*> lines = CMapEditor::GetInst()->GetLineList((MAP)curMap);
+	bool bcheck = false;
+	for (auto Line = lines.begin(); Line != lines.end(); ++Line)
 	{
-		MYPOINT pLeft = line->GetLine().tLPoint;
-		MYPOINT pRight = line->GetLine().tRPoint;
+		MYPOINT pLeft = (*Line)->tLPoint;
+		MYPOINT pRight = (*Line)->tRPoint;
+		if (pLeft.fY < m_tTransform.fY + 30.f && pRight.fY > m_tTransform.fY - 30.f)
+		{
+			if (pLeft.fX > m_tTransform.fX - 5.f && pLeft.fX < m_tTransform.fX + 5.f)
+			{
+				m_fPLine = pLeft.fX;
+				bcheck = true;
+				m_bIsonLine = true;
+				m_bIsFloor = true;
+			}
+		}
+	}
+	if (!bcheck)
+		m_bIsonLine = false;
+}
 
-		if (pLeft.fX > GetX() || pRight.fX <= GetX())
-			continue;
-
-		float fSlope = (pRight.fY - pLeft.fY) / (pRight.fX - pLeft.fX);
-
-		float b = -(fSlope * pLeft.fX - pLeft.fY);
-		float fY = fSlope * GetX() + b;
-		SetY(fY - GetScale() * 0.4f);
+<<<<<<< Updated upstream
+=======
+void CPlayer::animPlay(HDC _hdc)
+{
+	switch (m_eState)
+	{
+	case CPlayer::ANIM::IDLE_L:
+		m_pClipIdle_l->Play(_hdc, 100.f);
+		break;
+	case CPlayer::ANIM::IDLE_R:
+		m_pClipIdle_r->Play(_hdc, 100.f);
+		break;
+	case CPlayer::ANIM::WALK_R:
+		m_pClipWalk_r->Play(_hdc, 100.f);
+		break;
+	case CPlayer::ANIM::WALK_L:
+		m_pClipWalk_l->Play(_hdc, 100.f);
+		break;
+	case CPlayer::ANIM::ROPE:
+		m_pClipRope->Play(_hdc, 100.f);
 	}
 }
 
+void CPlayer::stateCheck()
+{
+	
+	if (CInputMgr::GetInstance()->GetKey(VK_LEFT, KEY_STATE::PRESSED))
+	{
+		m_eState = ANIM::WALK_L;
+	}
+	else if(CInputMgr::GetInstance()->GetKey(VK_RIGHT, KEY_STATE::PRESSED))
+	{
+		m_eState = ANIM::WALK_R;
+	}
+	else if (CInputMgr::GetInstance()->GetKey(VK_LEFT, KEY_STATE::UP))
+	{
+		m_eState = ANIM::IDLE_L;
+	}
+	else if (CInputMgr::GetInstance()->GetKey(VK_RIGHT, KEY_STATE::UP))
+	{
+		m_eState = ANIM::IDLE_R;
+	}
+	else if (m_bIsonLine && (CInputMgr::GetInstance()->GetKey(VK_UP, KEY_STATE::PRESSED) || CInputMgr::GetInstance()->GetKey(VK_DOWN, KEY_STATE::PRESSED)))
+	{
+		m_eState = ANIM::ROPE;
+	}
+}
+
+>>>>>>> Stashed changes
 void CPlayer::gravity(bool _value)
 {
 	if (!_value)
@@ -284,7 +475,16 @@ void CPlayer::SubJump(bool _value)
 {
 	if (_value)
 	{
+<<<<<<< Updated upstream
 		m_fYSpeed = -400.f;
+=======
+		if (m_iJumpCount < 1) //1이면 1단점프 2면 2단점프
+		{
+			++m_iJumpCount;
+			m_fYSpeed = -350.f;
+		}
+		m_iJumpCount = 0;
+>>>>>>> Stashed changes
 	}
 }
 

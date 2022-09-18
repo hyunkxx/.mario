@@ -79,6 +79,12 @@ void CCore::Process()
 	if (GetAsyncKeyState(VK_NEXT) & 0x0001)
 		CSceneMgr::GetInstance()->PrevScene();
 
+<<<<<<< Updated upstream
+=======
+	if(CSceneMgr::GetInstance()->IsNext())
+		CSceneMgr::GetInstance()->NextScene();
+
+>>>>>>> Stashed changes
 	update();
 	render();
 }

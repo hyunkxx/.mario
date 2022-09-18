@@ -102,6 +102,9 @@
     <Filter Include="src\Hyun\03. CObject\Potal">
       <UniqueIdentifier>{f3adfabe-7a26-4d61-b638-5470a2130bba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Joo\sik">
+      <UniqueIdentifier>{6584b44a-c394-44c2-8131-b266dcc3955b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -182,6 +185,39 @@
     <ClInclude Include="CPotal.h">
       <Filter>src\Hyun\03. CObject\Potal</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="CAnimClip.h">
+      <Filter>src\Hyun\10. MapData\HyunAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageThree.h">
+      <Filter>src\Hyun\04. Scene\04. CStageThree</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageFour.h">
+      <Filter>src\Hyun\04. Scene\05. CStageFour</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect.h">
+      <Filter>src\Hyun\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>src\duc</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>src\Joo\sik</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterDog.h">
+      <Filter>src\Joo\sik</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterDragon.h">
+      <Filter>src\Joo\sik</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonsterSlime.h">
+      <Filter>src\Joo\sik</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossMonster.h">
+      <Filter>src\Joo\sik</Filter>
+    </ClInclude>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -250,6 +286,36 @@
     <ClCompile Include="CPotal.cpp">
       <Filter>src\Hyun\03. CObject\Potal</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="CAnimClip.cpp">
+      <Filter>src\Hyun\10. MapData\HyunAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageThree.cpp">
+      <Filter>src\Hyun\04. Scene\04. CStageThree</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageFour.cpp">
+      <Filter>src\Hyun\04. Scene\05. CStageFour</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect.cpp">
+      <Filter>src\Hyun\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>src\Joo\sik</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterDog.cpp">
+      <Filter>src\Joo\sik</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterDragon.cpp">
+      <Filter>src\Joo\sik</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonsterSlime.cpp">
+      <Filter>src\Joo\sik</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossMonster.cpp">
+      <Filter>src\Joo\sik</Filter>
+    </ClCompile>
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="mario.rc">

@@ -14,6 +14,10 @@
 #include "CScrollMgr.h"
 #include "CMapEditor.h"
 
+
+#include "CMonsterDog.h"
+
+
 CStageTwo::CStageTwo(wstring _szName)
 	: CScene(_szName)
 	, m_hSubDC(0)
@@ -28,11 +32,31 @@ void CStageTwo::Enter()
 {
 	size_t i = CSceneMgr::GetInstance()->GetCurIndex();
 
+<<<<<<< Updated upstream
 	//시작화면 위치
 	CScrollMgr::GetInst()->SetScrollX(900);
 	CScrollMgr::GetInst()->SetScrollY(0);
 	//오브젝트 삽입
 	AddObject(new CPlayer(100.f, 100.f, 30.f), OBJ_TYPE::PLAYER);
+=======
+	MapSize mapSize = CMapEditor::GetInst()->GetMapSize(MAP::STAGE_2);
+	
+	int scX = CScrollMgr::GetInst()->GetScrollX();
+	int scY = CScrollMgr::GetInst()->GetScrollY();
+
+	AddObject(new CMonsterDog({ 300.f + scX, 470.f, 211.f  + scY, 143.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterDog({ 440.f + scX, 470.f, 211.f  + scY, 143.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterDog({ 770.f + scX, 470.f, 211.f  + scY, 143.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterDog({ 980.f + scX, 470.f, 211.f  + scY, 143.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterDog({ 990.f + scX, 470.f, 211.f  + scY, 143.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterDog({ 1080.f + scX, 470.f, 211.f  + scY, 143.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterDog({ 1200.f + scX, 470.f, 211.f  + scY, 143.f }), OBJ_TYPE::ENUMY);
+
+	AddObject(new CPotal
+	(mapSize.m_iWidth - (float)CPotal::POTAL_WIDTH * 1.5f //포탈 위치 X
+		, mapSize.m_iHeight - (float)CPotal::POTAL_HEIGHT - 70.f//포탈 위치 Y
+		, 0.f), OBJ_TYPE::POTAL);  // 포탈 크기와 오브젝트 타입(렌더링순서 관련)
+>>>>>>> Stashed changes
 }
 
 void CStageTwo::Exit()

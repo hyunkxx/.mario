@@ -16,6 +16,7 @@ CSceneMgr* CSceneMgr::pInstance;
 
 CSceneMgr::CSceneMgr()
 	: m_nCurIndex(0)
+	, m_bNext(0)
 {
 	//스테이지 생성
 	m_arrScene[(UINT)SCENE_STATE::STAGE_START] = new CStartScene(L"Start Scene");

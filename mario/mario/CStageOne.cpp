@@ -15,6 +15,8 @@
 #include "CMapEditor.h"
 #include "CPotal.h"
 
+#include "CMonsterSlime.h"
+
 CStageOne::CStageOne(wstring _szName)
 	: CScene(_szName)
 	, m_hSubDC(0)
@@ -33,6 +35,13 @@ void CStageOne::Enter()
 	AddObject(new CPlayer(100.f, 100.f, 30.f), OBJ_TYPE::PLAYER);
 	CScrollMgr::GetInst()->SetScrollX(0);
 	CScrollMgr::GetInst()->SetScrollY(0);
+
+	AddObject(new CMonsterSlime({ 200.f, 570.f, 100.f, 100.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterSlime({ 400.f, 570.f, 100.f, 100.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterSlime({ 600.f, 570.f, 100.f, 100.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterSlime({ 250.f, 570.f, 100.f, 100.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterSlime({ 632.f, 570.f, 100.f, 100.f }), OBJ_TYPE::ENUMY);
+	AddObject(new CMonsterSlime({ 572.f, 570.f, 100.f, 100.f }), OBJ_TYPE::ENUMY);
 
 	MapSize mapSize = CMapEditor::GetInst()->GetMapSize(MAP::STAGE_1);
 	AddObject(new CPotal

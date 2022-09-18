@@ -35,6 +35,7 @@ void CStartScene::Exit()
 
 void CStartScene::Update(float _fDeltaTime)
 {
+
 	if (CInputMgr::GetInstance()->GetKey(VK_RETURN, KEY_STATE::DOWN) || m_bMenuOn && CInputMgr::GetInstance()->GetKey(VK_LBUTTON, KEY_STATE::DOWN))
 		CSceneMgr::GetInstance()->NextScene();
 

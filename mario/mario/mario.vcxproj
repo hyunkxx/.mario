@@ -149,11 +149,20 @@
   <ItemGroup>
     <ClInclude Include="CBitmap.h" />
     <ClInclude Include="CBitmapMgr.h" />
+<<<<<<< Updated upstream
+=======
+    <ClInclude Include="CBossMonster.h" />
+    <ClInclude Include="CEffect.h" />
+>>>>>>> Stashed changes
     <ClInclude Include="CMapData.h" />
     <ClInclude Include="CMapEditor.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CInputMgr.h" />
     <ClInclude Include="CLineMgr.h" />
+    <ClInclude Include="CMonster.h" />
+    <ClInclude Include="CMonsterDog.h" />
+    <ClInclude Include="CMonsterDragon.h" />
+    <ClInclude Include="CMonsterSlime.h" />
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="CPlayer.h" />
@@ -177,11 +186,20 @@
   <ItemGroup>
     <ClCompile Include="CBitmap.cpp" />
     <ClCompile Include="CBitmapMgr.cpp" />
+<<<<<<< Updated upstream
+=======
+    <ClCompile Include="CBossMonster.cpp" />
+    <ClCompile Include="CEffect.cpp" />
+>>>>>>> Stashed changes
     <ClCompile Include="CMapData.cpp" />
     <ClCompile Include="CMapEditor.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CInputMgr.cpp" />
     <ClCompile Include="CLineMgr.cpp" />
+    <ClCompile Include="CMonster.cpp" />
+    <ClCompile Include="CMonsterDog.cpp" />
+    <ClCompile Include="CMonsterDragon.cpp" />
+    <ClCompile Include="CMonsterSlime.cpp" />
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="CPlayer.cpp" />
