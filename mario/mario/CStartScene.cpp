@@ -69,17 +69,15 @@ void CStartScene::Render(HDC _hdc)
 		, m_rcMenuLine.right
 		, m_rcMenuLine.bottom);
 
-
 	SelectObject(m_hSubDC, myBrush);
 	SelectObject(m_hSubDC, myPen);
 	DeleteObject(onPen);
 	DeleteObject(offPen);
 
-
 	wstring mapName = CMapEditor::GetInst()->GetMapName(MAP::STAGE_START);
 	m_hSubDC = CBitmapMgr::GetInstance()->FindBmp(mapName.c_str());
 	MapSize mapSize = CMapEditor::GetInst()->GetMapSize(MAP::STAGE_START);
-	BitBlt(_hdc, 0, 0, mapSize.m_iWidth, mapSize.m_iHeight, m_hSubDC, 0, 0, SRCCOPY);
+	BitBlt(_hdc, 0, 0, (int)mapSize.m_iWidth, (int)mapSize.m_iHeight, m_hSubDC, 0, 0, SRCCOPY);
 
 	TextOut(_hdc, 10, 10, m_szName.c_str(), lstrlen(m_szName.c_str()));
 }

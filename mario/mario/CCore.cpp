@@ -79,6 +79,10 @@ void CCore::Process()
 	if (GetAsyncKeyState(VK_NEXT) & 0x0001)
 		CSceneMgr::GetInstance()->PrevScene();
 
+	if(CSceneMgr::GetInstance()->IsNext())
+		CSceneMgr::GetInstance()->NextScene();
+
+
 	update();
 	render();
 }

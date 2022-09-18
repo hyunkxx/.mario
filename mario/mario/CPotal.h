@@ -14,6 +14,7 @@ public:
 	void Release() override;
 public:
 	bool AnimationTick(float _fAnimSpeed, int _iFrameCount);
+	void Use();
 private:
 	void collisionPosUpdate();
 public:
@@ -23,7 +24,6 @@ public:
 		POTAL_HEIGHT = 172,
 		POTAL_FRAME_MAX = 8
 	};
-	RECT m_CollisionRect;
 	wstring m_szImageName[POTAL_FRAME_MAX];
 	HDC m_hSubDC[POTAL_FRAME_MAX];
 	int m_iCurFrame;

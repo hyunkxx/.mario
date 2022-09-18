@@ -13,6 +13,7 @@
 #include "CBitmapMgr.h"
 #include "CScrollMgr.h"
 #include "CMapEditor.h"
+#include "CPotal.h"
 
 CStageTwo::CStageTwo(wstring _szName)
 	: CScene(_szName)
@@ -27,12 +28,14 @@ CStageTwo::~CStageTwo()
 void CStageTwo::Enter()
 {
 	size_t i = CSceneMgr::GetInstance()->GetCurIndex();
-
-	//시작화면 위치
-	CScrollMgr::GetInst()->SetScrollX(900);
-	CScrollMgr::GetInst()->SetScrollY(0);
 	//오브젝트 삽입
-	AddObject(new CPlayer(100.f, 100.f, 30.f), OBJ_TYPE::PLAYER);
+	AddObject(new CPlayer(100.f, 500.f, 32.f), OBJ_TYPE::PLAYER);
+
+	MapSize mapSize = CMapEditor::GetInst()->GetMapSize(MAP::STAGE_2);
+	AddObject(new CPotal
+	(mapSize.m_iWidth - (float)CPotal::POTAL_WIDTH * 1.5f //포탈 위치 X
+		, mapSize.m_iHeight - (float)CPotal::POTAL_HEIGHT - 70.f//포탈 위치 Y
+		, 0.f), OBJ_TYPE::POTAL);  // 포탈 크기와 오브젝트 타입(렌더링순서 관련)
 }
 
 void CStageTwo::Exit()
@@ -69,10 +72,6 @@ void CStageTwo::Update(float _fDeltaTime)
 			(*iter)->LateUpdate(_fDeltaTime);
 		}
 	}
-
-	//라인충돌
-	/*list<CObject*> playerList = *(CSceneMgr::GetInstance()->GetCurScene()->GetObjectList(OBJ_TYPE::PLAYER));
-	CCollisionMgr::CollisionLine(playerList, *(CLineMgr::GetInstance()->GetLines(SCENE_STATE::STAGE_1)));*/
 }
 
 void CStageTwo::Render(HDC _hdc)

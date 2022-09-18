@@ -6,6 +6,9 @@
 #include "CLine.h"
 #include "CPlayer.h"
 #include "CScrollMgr.h"
+#include "CPotal.h"
+#include "CSceneMgr.h"
+#include "CInputMgr.h"
 
 CCollisionMgr::CCollisionMgr()
 {
@@ -39,25 +42,25 @@ void CCollisionMgr::CollisionRect_Map(CObject* _lhs, vector<RECT*> _rhs)
 {
 	RECT rc{};
 
+	bool bCheckColl = false;
 	for (auto& rect : _rhs)
 	{
-		//충돌했을 경우는?
-		//if (IntersectRect(&rc, &(_lhs->GetRect()),rect))
 		if (CheckTop(_lhs, rect))
 		{
-			if ((_lhs->GetRect().bottom) + CScrollMgr::GetInst()->GetScrollY(), rect->top + CScrollMgr::GetInst()->GetScrollY())
+			if (!static_cast<CPlayer*>(_lhs)->IsJump())
 			{
-				_lhs->SetY(rect->top - _lhs->GetScale() * 0.5f);
-				static_cast<CPlayer*>(_lhs)->gravity(false);
-				static_cast<CPlayer*>(_lhs)->SetGround(true);
-			}
-			else
-			{
-				static_cast<CPlayer*>(_lhs)->gravity(true);
-				static_cast<CPlayer*>(_lhs)->SetGround(false);
+				//_lhs->SetY(rect->top - _lhs->GetScale() * 0.5f); //충돌후 Y좌표보정
+				if (_lhs->GetRect().bottom - 3 < rect->top)
+				{
+					_lhs->SetY(rect->top - _lhs->GetScale() * 0.5f);
+					bCheckColl = true;
+					static_cast<CPlayer*>(_lhs)->SetFloor(true);
+				}
 			}
 		}
 	}
+	if (!bCheckColl)
+		static_cast<CPlayer*>(_lhs)->SetFloor(false);
 }
 
 bool CCollisionMgr::CheckTop(CObject* _pPlayer, RECT* pRect)
@@ -69,8 +72,39 @@ bool CCollisionMgr::CheckTop(CObject* _pPlayer, RECT* pRect)
 			return true;
 		}
 	}
-
 	return false;
+}
+
+void CCollisionMgr::CollisionPotal(CObject* _pPlayer, CObject* _pPotal)
+{
+	if (RectTrigger(_pPlayer, _pPotal))
+	{
+		if (static_cast<CPlayer*>(_pPlayer)->IsUse())
+		{
+			CSceneMgr::GetInstance()->SetNext(true);
+		}
+	}
+}
+
+bool CCollisionMgr::RectTrigger(CObject* _pPlayer, CObject* _pPotal)
+{
+	RECT rc{};
+	if (IntersectRect(&rc, &(_pPlayer->GetRect()), &(_pPotal->GetRect())))
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+
+void CCollisionMgr::CheckLR(CObject* _pPlayer, RECT* pRect)
+{
+	if (_pPlayer->GetRect().right > pRect->left)
+		_pPlayer->SetX(pRect->left - _pPlayer->GetScale() * 0.5f);
+	
+	if(_pPlayer->GetRect().left > pRect->right)
+		_pPlayer->SetX(pRect->right + _pPlayer->GetScale() * 0.5f);
 }
 
 //void CCollisionMgr::CollisionPlayerToRect(list<CObject*> _Dest, list<CObject*> _Src)
@@ -90,9 +124,12 @@ bool CCollisionMgr::CheckTop(CObject* _pPlayer, RECT* pRect)
 //	}
 //}
 
-void CCollisionMgr::CollisionLine(list<CObject*> _lhs, vector<CLine*> _rhs)
+void CCollisionMgr::CollisionRope(CObject* _pPlayer, vector<LINE*> _vRope)
 {
-	
+	for (auto& rope : _vRope)
+	{
+
+	}
 }
 
 void CCollisionMgr::CollisionSphere(list<CObject*> _Dest, list<CObject*> _Src)
@@ -110,9 +147,9 @@ void CCollisionMgr::CollisionSphere(list<CObject*> _Dest, list<CObject*> _Src)
 	}
 }
 
-bool CCollisionMgr::CheckSphere(CObject * _pDest, CObject * _pSrc)
+bool CCollisionMgr::CheckSphere(CObject* _pDest, CObject* _pSrc)
 {
-	float	fWidth = fabs(_pDest->GetX()- _pSrc->GetX());
+	float	fWidth = fabs(_pDest->GetX() - _pSrc->GetX());
 	float	fHeight = fabs(_pDest->GetY() - _pSrc->GetY());
 	float	fDiagonal = sqrtf(fWidth * fWidth + fHeight * fHeight);
 

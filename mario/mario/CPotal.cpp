@@ -3,6 +3,9 @@
 
 #include "CBitmapMgr.h"
 #include "CScrollMgr.h"
+#include "CSceneMgr.h"
+#include "CollisionMgr.h"
+#include "CSceneMgr.h"
 
 CPotal::CPotal(float _x, float _y, float _scale)
 	: CObject(_x,_y,_scale)
@@ -47,24 +50,18 @@ int CPotal::Update(float _fDeltaTime)
 void CPotal::LateUpdate(float _fDeltaTime)
 {
 	collisionPosUpdate();
+	CCollisionMgr::CollisionPotal(CSceneMgr::GetInstance()->GetCurScene()->GetPlayer(), this);
 }
 
 void CPotal::Render(HDC _hdc)
 {
-	//충돌처리 렉트 테스트용
-	Rectangle(
-		_hdc
-		, m_CollisionRect.left
-		, m_CollisionRect.top
-		, m_CollisionRect.right
-		, m_CollisionRect.bottom);
-
-	Rectangle(
-		_hdc
-		, GetRect().left
-		, GetRect().top
-		, GetRect().right
-		, GetRect().bottom);
+	////충돌처리 렉트 테스트용
+	//Rectangle(
+	//	_hdc
+	//	, m_rcRect.left + CScrollMgr::GetInst()->GetScrollX()
+	//	, m_rcRect.top + CScrollMgr::GetInst()->GetScrollY()
+	//	, m_rcRect.right + CScrollMgr::GetInst()->GetScrollX()
+	//	, m_rcRect.bottom + CScrollMgr::GetInst()->GetScrollY());
 
 	GdiTransparentBlt(_hdc
 		, GetX() + CScrollMgr::GetInst()->GetScrollX()
@@ -100,9 +97,8 @@ bool CPotal::AnimationTick(float _fAnimSpeed, int _iFrameCount)
 void CPotal::collisionPosUpdate()
 {
 	//충돌처리 렉트
-	m_CollisionRect.left = GetX() - POTAL_WIDTH * 0.5f;
-	m_CollisionRect.top = GetY() - POTAL_HEIGHT * 0.5f;
-	m_CollisionRect.right = GetX() + POTAL_WIDTH * 0.5f;
-	m_CollisionRect.bottom = GetY() + POTAL_HEIGHT * 0.5f;
+	m_rcRect.left   = GetX();
+	m_rcRect.top    = GetY();
+	m_rcRect.right  = GetX() + POTAL_WIDTH;
+	m_rcRect.bottom = GetY() + POTAL_HEIGHT;;
 }
-

@@ -93,14 +93,14 @@
     <Filter Include="src\Hyun\10. MapData">
       <UniqueIdentifier>{0da668f5-c610-4f21-b47c-49f44fbe3006}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Hyun\HyunAnimation">
-      <UniqueIdentifier>{861bc7df-6e6e-444f-a7d7-2a4ef4b52dcd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Hyun\HyunAnimation\Potal">
-      <UniqueIdentifier>{13cb02fd-ea33-4ea4-b24f-116bb4cff00e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Hyun\03. CObject\Potal">
       <UniqueIdentifier>{f3adfabe-7a26-4d61-b638-5470a2130bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\10. MapData\HyunAnimation">
+      <UniqueIdentifier>{861bc7df-6e6e-444f-a7d7-2a4ef4b52dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hyun\10. MapData\HyunAnimation\Potal">
+      <UniqueIdentifier>{13cb02fd-ea33-4ea4-b24f-116bb4cff00e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,10 +177,19 @@
       <Filter>src\Hyun\04. Scene\03. CStageTwo</Filter>
     </ClInclude>
     <ClInclude Include="hyunAnimation.h">
-      <Filter>src\Hyun\HyunAnimation</Filter>
+      <Filter>src\Hyun\10. MapData\HyunAnimation</Filter>
     </ClInclude>
     <ClInclude Include="CPotal.h">
       <Filter>src\Hyun\03. CObject\Potal</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimClip.h">
+      <Filter>src\Hyun\10. MapData\HyunAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageThree.h">
+      <Filter>src\Hyun\04. Scene\04. CStageThree</Filter>
+    </ClInclude>
+    <ClInclude Include="CStageFour.h">
+      <Filter>src\Hyun\04. Scene\05. CStageFour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -245,10 +254,19 @@
       <Filter>src\Hyun\04. Scene\03. CStageTwo</Filter>
     </ClCompile>
     <ClCompile Include="hyunAnimation.cpp">
-      <Filter>src\Hyun\HyunAnimation</Filter>
+      <Filter>src\Hyun\10. MapData\HyunAnimation</Filter>
     </ClCompile>
     <ClCompile Include="CPotal.cpp">
       <Filter>src\Hyun\03. CObject\Potal</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimClip.cpp">
+      <Filter>src\Hyun\10. MapData\HyunAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageThree.cpp">
+      <Filter>src\Hyun\04. Scene\04. CStageThree</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageFour.cpp">
+      <Filter>src\Hyun\04. Scene\05. CStageFour</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

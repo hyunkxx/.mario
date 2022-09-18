@@ -54,11 +54,11 @@ void CObject::LateUpdate(float _fDeltaTime)
 void CObject::Render(HDC _hdc)
 {
 	//테스트용 코드 실제 렌더링은 상속받은 쪽에서 구현
-	Rectangle(_hdc
-		, m_rcRect.left 
-		, m_rcRect.top 
-		, m_rcRect.right 
-		, m_rcRect.bottom );
+	//Rectangle(_hdc
+	//	, m_rcRect.left 
+	//	, m_rcRect.top 
+	//	, m_rcRect.right 
+	//	, m_rcRect.bottom );
 }
 
 void CObject::Release()

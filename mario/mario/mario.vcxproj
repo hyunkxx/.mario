@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CAnimClip.h" />
     <ClInclude Include="CBitmap.h" />
     <ClInclude Include="CBitmapMgr.h" />
     <ClInclude Include="CMapData.h" />
@@ -162,7 +163,9 @@
     <ClInclude Include="CSceneMgr.h" />
     <ClInclude Include="CScrollMgr.h" />
     <ClInclude Include="CStageEdit.h" />
+    <ClInclude Include="CStageFour.h" />
     <ClInclude Include="CStageOne.h" />
+    <ClInclude Include="CStageThree.h" />
     <ClInclude Include="CStageTwo.h" />
     <ClInclude Include="CStartScene.h" />
     <ClInclude Include="CLine.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAnimClip.cpp" />
     <ClCompile Include="CBitmap.cpp" />
     <ClCompile Include="CBitmapMgr.cpp" />
     <ClCompile Include="CMapData.cpp" />
@@ -190,7 +194,9 @@
     <ClCompile Include="CSceneMgr.cpp" />
     <ClCompile Include="CScrollMgr.cpp" />
     <ClCompile Include="CStageEdit.cpp" />
+    <ClCompile Include="CStageFour.cpp" />
     <ClCompile Include="CStageOne.cpp" />
+    <ClCompile Include="CStageThree.cpp" />
     <ClCompile Include="CStageTwo.cpp" />
     <ClCompile Include="CStartScene.cpp" />
     <ClCompile Include="CLine.cpp" />
