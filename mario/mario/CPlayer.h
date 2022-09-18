@@ -42,13 +42,11 @@ private:
 	void SubJump(bool _value); // 스페이스바 눌렀을때
 	void SubHeading(bool _value); //머리가 천장에 닿았을때
 	void Collide_MapEnd(MapSize _size); //맵끝에 닿았을때
-	
 private:
 	void moveUp();
 	void moveDown();
 	void moveRight();
 	void moveLeft();
-	void scrollOffset();
 	void onLine();
 private:
 	//동현
@@ -66,7 +64,7 @@ private:
 	ULONGLONG beginTime;
 	bool bDebug;
 public:
-	enum class ANIM { IDLE_L , IDLE_R , WALK_R , WALK_L , END };
+	enum class ANIM { IDLE_L , IDLE_R , WALK_R , WALK_L , JUMP_L , JUMP_R ,END };
 	void SetAnimState(ANIM _eState) { m_eState = _eState; };
 	bool IsUse() { return m_bUse; }
 private:
@@ -81,5 +79,7 @@ public:
 	class CAnimClip* m_pClipWalk_r;
 	class CAnimClip* m_pClipIdle_l;
 	class CAnimClip* m_pClipWalk_l;
+	class CAnimClip* m_pClipJump_l;
+	class CAnimClip* m_pClipJump_r;
 };
 

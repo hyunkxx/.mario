@@ -68,3 +68,10 @@ enum class MAP
 	STAGE_EDIT,
 	END
 };
+
+enum Bit_Banana
+{
+	Banana_Width = 45,
+	Banana_Heigh = 45,
+	Banana_Frame_Max = 6
+};

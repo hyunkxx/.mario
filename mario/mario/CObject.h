@@ -36,6 +36,18 @@ public:
 
 	void AddPosition(float _fX, float _fY) { m_tTransform.fX += _fX; m_tTransform.fY += _fY; }
 	void AddScale(float _fScale) { m_tTransform.fScale += _fScale; }
+
+public:
+	const RECT& GetRect() { return m_rcRect; }
+	void SetDead() { bTestDead = true; }
+
+	// 총알 방향 지시
+	void SetDirection(bool _bDirection) { bDirection = _bDirection; }
+
+
+
+
+
 public:
 
 private:
@@ -44,5 +56,7 @@ protected:
 	OBJ_STATE m_eObjState;
 	Transform m_tTransform;
 	RECT	  m_rcRect;
+	bool bDirection;
+	bool bTestDead;
 };
 

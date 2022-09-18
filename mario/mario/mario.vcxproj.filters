@@ -102,6 +102,18 @@
     <Filter Include="src\Hyun\10. MapData\HyunAnimation\Potal">
       <UniqueIdentifier>{13cb02fd-ea33-4ea4-b24f-116bb4cff00e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Hyun\Effect">
+      <UniqueIdentifier>{6929b180-4999-4a37-8375-4fa4676f7940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\duc">
+      <UniqueIdentifier>{dbcbfa44-416d-4666-a3f3-1fffede112e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\duc\CWing">
+      <UniqueIdentifier>{bf80c132-ea54-449a-b6d4-0bb19e4f2022}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Joo">
+      <UniqueIdentifier>{cddcc620-79db-4d6a-ab9b-8fca64ec265b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -191,6 +203,12 @@
     <ClInclude Include="CStageFour.h">
       <Filter>src\Hyun\04. Scene\05. CStageFour</Filter>
     </ClInclude>
+    <ClInclude Include="CEffect.h">
+      <Filter>src\Hyun\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>src\duc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -267,6 +285,9 @@
     </ClCompile>
     <ClCompile Include="CStageFour.cpp">
       <Filter>src\Hyun\04. Scene\05. CStageFour</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect.cpp">
+      <Filter>src\Hyun\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

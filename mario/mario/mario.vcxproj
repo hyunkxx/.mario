@@ -147,9 +147,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="CAnimClip.h" />
     <ClInclude Include="CBitmap.h" />
     <ClInclude Include="CBitmapMgr.h" />
+    <ClInclude Include="CEffect.h" />
     <ClInclude Include="CMapData.h" />
     <ClInclude Include="CMapEditor.h" />
     <ClInclude Include="CCore.h" />
@@ -181,6 +183,7 @@
     <ClCompile Include="CAnimClip.cpp" />
     <ClCompile Include="CBitmap.cpp" />
     <ClCompile Include="CBitmapMgr.cpp" />
+    <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CMapData.cpp" />
     <ClCompile Include="CMapEditor.cpp" />
     <ClCompile Include="CCore.cpp" />

@@ -12,6 +12,14 @@
 #include "CBitmapMgr.h"
 #include "CAnimClip.h"
 
+
+
+#include "AbstractFactory.h"
+//#include "CShot.h"
+#include "CScene.h"
+#include "CScrollMgr.h"
+#include "CBitmapMgr.h"
+
 CPlayer::CPlayer()
 	: CObject()
 	, m_fMoveSpeed(200.f)
@@ -70,7 +78,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initalize()
 {
-	m_fMoveSpeed=300.f;
+	m_fMoveSpeed=200.f;
 	SetScale(62.f);
 	m_eState = ANIM::IDLE_R;
 	m_bUse   = false;
@@ -262,7 +270,13 @@ void CPlayer::KeyInput()
 
 	//아래점프
 	if (CInputMgr::GetInstance()->GetKey(VK_DOWN, KEY_STATE::PRESSED) && CInputMgr::GetInstance()->GetKey(VK_SPACE, KEY_STATE::DOWN))
+	{
 		SetY(GetY() + 5.f);
+		return;
+	}
+
+	/*if(CInputMgr::GetInstance()->GetKey(VK_RIGHT, KEY_STATE::DOWN)
+		CSceneMgr::GetIns*/
 
 
 	if (CInputMgr::GetInstance()->GetKey(VK_RIGHT, KEY_STATE::PRESSED))
@@ -270,10 +284,14 @@ void CPlayer::KeyInput()
 	if (CInputMgr::GetInstance()->GetKey(VK_LEFT, KEY_STATE::PRESSED))
 		moveLeft();
 
-
 	if (CInputMgr::GetInstance()->GetKey(VK_SPACE, KEY_STATE::DOWN))
 		m_bIsJump = true;
 
+
+	if (CInputMgr::GetInstance()->GetKey(VK_UP, KEY_STATE::DOWN))
+		m_bUse = true;
+	else
+		m_bUse = false;
 }
 
 
@@ -397,7 +415,7 @@ void CPlayer::SubJump(bool _value)
 		if (m_iJumpCount < 1) //1이면 1단점프 2면 2단점프
 		{
 			++m_iJumpCount;
-			m_fYSpeed = -400.f;
+			m_fYSpeed = -300.f;
 		}
 	}
 }
@@ -425,13 +443,10 @@ void CPlayer::Collide_MapEnd(MapSize _size)
 	{
 		m_tTransform.fX = _size.m_iWidth - m_tTransform.fScale * 0.5f;;
 	}
-	//if (m_rcRect.top < 0)
-	//{
-	//	m_tTransform.fY = 0 + m_tTransform.fScale * 0.5f;
-	//}
 	if (m_rcRect.bottom > _size.m_iHeight)
 	{
 		m_tTransform.fY = _size.m_iHeight - m_tTransform.fScale * 0.5f;
 	}
 }
+
 
