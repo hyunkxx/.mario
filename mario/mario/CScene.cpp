@@ -18,6 +18,9 @@ CScene::~CScene()
 
 void CScene::AddObject(CObject* _pObj, OBJ_TYPE _eType)
 {
+	//if (_eType == OBJ_TYPE::PLAYER)
+
+
 	m_arrObject[(UINT)_eType].push_back(_pObj);
 }
 

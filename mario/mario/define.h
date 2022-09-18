@@ -22,9 +22,9 @@ enum class OBJ_TYPE
 	DEFAULT,      //초기값
 	ENVIRONMENT,  //환경 오브젝트
 	TERRAIN,      //지형
-	POTAL, 	      //포탈
 	ENUMY,	      //몬스터
 	PLAYER,       //플레이어
+	INTERACTION,  //상호작용 오브젝트
 	UI,			  //UI
 	END
 };
