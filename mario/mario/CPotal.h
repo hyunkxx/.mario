@@ -2,7 +2,7 @@
 
 #include "CObject.h"
 
-class CPotal : public CObject
+class CPotal : public CObject 
 {
 public:
 	CPotal(float _x, float _y, float _scale);
@@ -14,13 +14,16 @@ public:
 	void Release() override;
 public:
 	bool AnimationTick(float _fAnimSpeed, int _iFrameCount);
+private:
+	void collisionPosUpdate();
 public:
 	enum
 	{
-		POTAL_WITDH  = 134,
+		POTAL_WIDTH  = 134,
 		POTAL_HEIGHT = 172,
 		POTAL_FRAME_MAX = 8
 	};
+	RECT m_CollisionRect;
 	wstring m_szImageName[POTAL_FRAME_MAX];
 	HDC m_hSubDC[POTAL_FRAME_MAX];
 	int m_iCurFrame;

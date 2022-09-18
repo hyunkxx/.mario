@@ -40,7 +40,7 @@ public:
 
 private:
 	void setRect();
-private:
+protected:
 	OBJ_STATE m_eObjState;
 	Transform m_tTransform;
 	RECT	  m_rcRect;

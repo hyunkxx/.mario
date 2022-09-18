@@ -61,6 +61,10 @@ void CCore::Initalize(const HINSTANCE _hInstance, const HWND _hWnd, const RECT& 
 	DeleteObject(hDefaultBitmap);
 
 	
+	//맵 충돌 데이터 모두 로드
+	for (int i = 0; i < (UINT)MAP::END; i++)
+		CMapEditor::GetInst()->LoadData((MAP)i);
+
 	CMapEditor::GetInst()->Initalize();
 
 	//메뉴씬으로 진입

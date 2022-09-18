@@ -32,7 +32,7 @@ void CStageTwo::Enter()
 	CScrollMgr::GetInst()->SetScrollX(900);
 	CScrollMgr::GetInst()->SetScrollY(0);
 	//오브젝트 삽입
-	AddObject(new CPlayer(900.f, 550.f, 30.f), OBJ_TYPE::PLAYER);
+	AddObject(new CPlayer(100.f, 100.f, 30.f), OBJ_TYPE::PLAYER);
 }
 
 void CStageTwo::Exit()

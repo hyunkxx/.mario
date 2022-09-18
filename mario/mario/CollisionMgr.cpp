@@ -5,6 +5,7 @@
 #include "CObject.h"
 #include "CLine.h"
 #include "CPlayer.h"
+#include "CScrollMgr.h"
 
 CCollisionMgr::CCollisionMgr()
 {
@@ -30,6 +31,46 @@ void CCollisionMgr::CollisionRect(list<CObject*> _Dest, list<CObject*> _Src)
 			}
 		}
 	}
+}
+
+
+//플레이어와 사각형의 충돌 >
+void CCollisionMgr::CollisionRect_Map(CObject* _lhs, vector<RECT*> _rhs)
+{
+	RECT rc{};
+
+	for (auto& rect : _rhs)
+	{
+		//충돌했을 경우는?
+		//if (IntersectRect(&rc, &(_lhs->GetRect()),rect))
+		if (CheckTop(_lhs, rect))
+		{
+			if ((_lhs->GetRect().bottom) + CScrollMgr::GetInst()->GetScrollY(), rect->top + CScrollMgr::GetInst()->GetScrollY())
+			{
+				_lhs->SetY(rect->top - _lhs->GetScale() * 0.5f);
+				static_cast<CPlayer*>(_lhs)->gravity(false);
+				static_cast<CPlayer*>(_lhs)->SetGround(true);
+			}
+			else
+			{
+				static_cast<CPlayer*>(_lhs)->gravity(true);
+				static_cast<CPlayer*>(_lhs)->SetGround(false);
+			}
+		}
+	}
+}
+
+bool CCollisionMgr::CheckTop(CObject* _pPlayer, RECT* pRect)
+{
+	if (_pPlayer->GetRect().right > pRect->left && _pPlayer->GetRect().left < pRect->right)
+	{
+		if (_pPlayer->GetRect().bottom > pRect->top && pRect->top > _pPlayer->GetY())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 //void CCollisionMgr::CollisionPlayerToRect(list<CObject*> _Dest, list<CObject*> _Src)

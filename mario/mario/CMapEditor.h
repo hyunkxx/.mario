@@ -17,8 +17,8 @@ public:
 	void CollisionRender(HDC _hdc, MAP _eType);
 	void DrawToggle() { m_bDraw = !m_bDraw; }
 	HDC& GetMap(MAP _eType) { return m_subDC[(UINT)_eType]; }
-	vector<LINE*>* GetLineList() { return m_vecLines; }
-	vector<RECT*>* GetRectList() { return m_vecRects; }
+	vector<LINE*> GetLineList(MAP _eType) { return m_vecLines[(UINT)_eType]; }
+	vector<RECT*> GetRectList(MAP _eType) { return m_vecRects[(UINT)_eType]; }
 	
 	UINT GetCurMap() { return m_nCurSettingMap; }
 	wstring GetMapName(MAP _eType) { return m_szMapName[(UINT)_eType]; }

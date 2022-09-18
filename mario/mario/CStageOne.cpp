@@ -30,12 +30,16 @@ void CStageOne::Enter()
 	size_t i = CSceneMgr::GetInstance()->GetCurIndex();
 
 	//오브젝트 삽입
-	AddObject(new CPlayer(100.f, 500.f, 30.f), OBJ_TYPE::PLAYER);
+	AddObject(new CPlayer(100.f, 100.f, 30.f), OBJ_TYPE::PLAYER);
 	CScrollMgr::GetInst()->SetScrollX(0);
 	CScrollMgr::GetInst()->SetScrollY(0);
 
-	AddObject(new CPotal(10.f, 10.f, 30.f), OBJ_TYPE::ENVIRONMENT);
-}
+	MapSize mapSize = CMapEditor::GetInst()->GetMapSize(MAP::STAGE_1);
+	AddObject(new CPotal
+     	( mapSize.m_iWidth - (float)CPotal::POTAL_WIDTH * 1.5 //포탈 위치 X
+		, mapSize.m_iHeight - (float)CPotal::POTAL_WIDTH      //포탈 위치 Y
+		, 0.f), OBJ_TYPE::TERRAIN);  // 포탈 크기와 오브젝트 타입(렌더링순서 관련)
+} 
 
 void CStageOne::Exit()
 {
@@ -94,7 +98,9 @@ void CStageOne::mapRender(HDC _hdc)
 		, (int)CScrollMgr::GetInst()->GetScrollY()
 		, (int)mapSize.m_iWidth
 		, (int)mapSize.m_iHeight,
-		m_hSubDC, 0, 0, SRCCOPY);
+		m_hSubDC
+		,0
+		,0, SRCCOPY);
 }
 
 void CStageOne::objectRedner(HDC _hdc)
@@ -114,3 +120,5 @@ void CStageOne::collisionMap()
 	/*list<CObject*> playerList = *(CSceneMgr::GetInstance()->GetCurScene()->GetObjectList(OBJ_TYPE::PLAYER));
 	CCollisionMgr::CollisionLine(playerList, *(CLineMgr::GetInstance()->GetLines(SCENE_STATE::STAGE_1)));*/
 }
+
+//점프 까지 
